@@ -1,0 +1,10 @@
+{% extends "profile/index.html" %}
+
+
+{% block centerdata %}
+    <ol>
+        {% for item in data_list %}
+        <li><a href="/{{ page }}/{{ item.id }}/">{{ item.name }}</a></li>
+        {% endfor %}
+    </ol>
+{% endblock %}
