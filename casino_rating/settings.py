@@ -117,7 +117,7 @@ ACTIVATION_DAYS = 3
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'account.backends.IdBackend',
+    # 'account.backends.IdBackend',
 )
 # AUTH_PROFILE_MODULE = 'profile.UserProfile'
 LOGIN_URL = '/account/login/'
