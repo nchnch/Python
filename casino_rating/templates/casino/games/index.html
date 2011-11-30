@@ -1,0 +1,8 @@
+{% extends "default.html" %}
+
+
+{% block center %}
+    {% for item in game_list %}
+    <a href="/slots/{{ item.id }}/">{{ item }}</a><br />
+    {% endfor %}
+{% endblock %}

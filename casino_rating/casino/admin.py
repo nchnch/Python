@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.utils.translation import ugettext as _
-from casino.models import Slot, Roulette, Developer, Casino, CasinoInfo, CasinoImage, \
-    CasinoArticle, GameImage, GameInfo, GameToCasino
+from casino.models import Game, Developer, Casino, CasinoInfo, CasinoImage, CasinoToPaymentSystem, \
+    CasinoArticle, GameImage, GameInfo, GameToCasino #Slot, Roulette, 
+
+
+class CasinoToPaymentSystemInline(admin.TabularInline):
+    model = CasinoToPaymentSystem
+    extra = 0
 
 
 class GameToCasinoInline(admin.StackedInline):
@@ -12,7 +17,7 @@ class GameToCasinoInline(admin.StackedInline):
 
 class CasinoInfoInline(admin.StackedInline):
     model = CasinoInfo
-    extra = 1
+    extra = 0
     fieldsets = (
         (_(u"Основное"), {"fields" : ("lang", "name", "image", "description", "text")}),
         (_(u"Партнерские ссылки"), {"fields" : ("purl_main", "purl_download", "purl_bonus", )}),
@@ -21,7 +26,7 @@ class CasinoInfoInline(admin.StackedInline):
 
 class CasinoImageInline(admin.TabularInline):
     model = CasinoImage
-    extra = 1
+    extra = 0
 
 
 class CasinoArticleInline(admin.StackedInline):
@@ -33,16 +38,16 @@ class CasinoAdmin(admin.ModelAdmin):
     fieldsets = (
         (_(u"Основное инфо"), {"fields" : ("name", "urlkey", "domain", "similar_sale", "status", 
             "link_similar_sale",)}),
-        (_(u"Связи"), {"fields" : ("developers", "paymentsystems",)}), 
+        (_(u"Связи"), {"fields" : ("developers", )}), 
         # (_(u"Партнерские ссылки"), {"fields" : ("name", )}),
         (_(u"Параметры"), {"fields" : ("param_mobile", "param_browser", "param_audited", "param_integrity",
-            "param_license", "param_shift", "param_jackpot", "param_dealer", "param_multiplayer", 
+            "param_license", "param_jackpot", #"param_shift", "param_dealer", "param_multiplayer", 
             "param_tournaments", "param_nodepositbonus",)}),
         (_(u"Сортировка"), {"fields" : ("order_hand", "order_hand_date", )}),
     )
-    inlines = (CasinoInfoInline, CasinoImageInline, CasinoArticleInline, GameToCasinoInline,)
-    filter_horizontal = ('developers', 'paymentsystems', )
-    list_display = ("name", "domain", "enabled", )
+    inlines = (CasinoInfoInline, CasinoImageInline, CasinoArticleInline, CasinoToPaymentSystemInline, GameToCasinoInline,)
+    filter_horizontal = ('developers', )
+    list_display = ("name", "domain", "status", "enabled", )
     list_filter = ("enabled", "status", )
     ordering = ("enabled", )
     search_fields = ("name", "domain", )
@@ -50,7 +55,7 @@ class CasinoAdmin(admin.ModelAdmin):
 
 class GameInfoInline(admin.StackedInline):
     model = GameInfo
-    extra = 1
+    extra = 0
 
 
 class GameImageInline(admin.TabularInline):
@@ -61,15 +66,25 @@ class GameImageInline(admin.TabularInline):
 class GameAdmin(admin.ModelAdmin):
     """
     """
-    _params = None
+    # _params = None
+    fieldsets = (
+        (_(u"Основное инфо"), {'fields': ('name', 'gametype', 'screenshot', 'developers', 'maincasino', )}),
+        (_(u"Общие параметры"), {'fields': ('param_sale', 'param_gambling', 'param_offline', 'param_mobile', 
+            'param_integrity', 'param_jackpot', )}),
+        (_(u"Параметры слотов"), {'fields': ('param_numberlines', 'param_numberdrums', )}),
+        (_(u"Параметры рулетки"), {'fields': ('param_minbet', 'param_maxbet', 'param_ratio', )}),
+        (_(u"Сортировка"), {'fields': ('order_hand', 'order_hand_date', )}),
+        (_(u"Настройки Flash"), {'fields': ('flash_width', 'flash_height', 'flash_enabled', 
+            'flash_inframe', )}),
+    )
     search_fields = ("name",  )
-    list_display = ("name", "enabled", )
-    list_filter = ("enabled", )
+    list_display = ("name", "gametype", "enabled", )
+    list_filter = ("enabled", "gametype", )
     inlines = (GameInfoInline, GameImageInline, GameToCasinoInline,)
     filter_horizontal = ('developers', )
     ordering = ("enabled", )
 
-
+'''
 class SlotAdmin(GameAdmin):
     """
     """
@@ -100,13 +115,14 @@ class RouletteAdmin(GameAdmin, admin.ModelAdmin):
     )
 # RouletteAdmin.fieldsets = list(GameAdmin.fieldsets)
 # RouletteAdmin.fieldsets[1][1]["fields"] += RouletteAdmin._params
-
+'''
 
 admin.site.register(Developer)
 admin.site.register(Casino, CasinoAdmin)
 
-admin.site.register(Slot, SlotAdmin)
-admin.site.register(Roulette, RouletteAdmin)
+admin.site.register(Game, GameAdmin)
+# admin.site.register(Slot, SlotAdmin)
+# admin.site.register(Roulette, RouletteAdmin)
 
 '''
 admin.site.register(CatalogFlowers, CatalogFlowersAdmin)

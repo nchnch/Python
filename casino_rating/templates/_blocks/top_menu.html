@@ -1,0 +1,8 @@
+<ul>
+    <li><a href="/">Главная</a></li>
+    {% for item in TOP_MENU %}
+    <li{% if TOP_MENU_ACTIVE == item.0 %} class="active"{% endif %}>
+      <a href="{{ item.0 }}">{{ item.1 }}</a>
+    </li>
+    {% endfor %}
+</ul>

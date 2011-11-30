@@ -11,7 +11,8 @@ urlpatterns = patterns('',
     url(r'^$', 'casino_rating.views.home'),
 
     #Modules URLs. 
-    url(r'^casino/', include('casino.urls')),
+    url(r'^casino/', include('casino.casino_urls')),
+    url(r'^slots/', include('casino.game_urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
