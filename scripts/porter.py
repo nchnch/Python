@@ -1,18 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
-import psycopg2
 import sys
-from psycopg2.extras import DictCursor, DictConnection
-
-
-# conn_old = psycopg2.connect("dbname='casino_remote' user='user' host='localhost' password='qwerty'")
-conn_old = DictConnection("dbname='casino_remote' user='user' host='localhost' password='qwerty'")
-conn_new = psycopg2.connect("dbname='casino' user='user' host='localhost' password='qwerty'")
-conn_new.autocommit = False
-# c_old = conn_old.cursor(cursor_factory=DictCursor)
-c_old = conn_old.cursor()
-c_old.execute("SET NAMES 'UTF8'")
-c_new = conn_new.cursor()
+from settings_local import conn_new, conn_old, c_new, c_old
 
 
 def main():

@@ -39,7 +39,7 @@ class Casino(models.Model):
     name = models.CharField(_(u"Название"), max_length=200)#, unique=True
     similar_sale = models.BooleanField(_(u"Есть ли похожее на продажу")) #new
     domain = models.URLField(_(u"Домен"))
-    urlkey = models.SlugField(_(u"Ссылка"))#, unique=True
+    urlkey = models.SlugField(_(u"ЧПУ ссылка на инфо"))#, unique=True
     status = models.SmallIntegerField(_(u"Статус казино"), choices=STATUSES, default=1) #new
     link_similar_sale = models.URLField(_(u"Ссылка на купить похожее казино")) #new
     param_mobile = models.SmallIntegerField(_(u"Мобильная версия"), help_text="", choices=PARAM_VALUES, default=-1)
