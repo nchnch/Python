@@ -83,7 +83,7 @@ def _casino_params():
     param_list = [297, 147, 111, 74, 210, 77, 116, 127]
     param_keys = {297 : "param_mobile", 147 : "param_browser", 111 : "param_audited", 
     74 : "param_integrity", 210 : "param_license", 77 : "param_jackpot", 116 : "param_tournaments", 
-    127 : "param_nodepositbonus"}
+    127 : "param_nodepositbonus", 192 : "param_download"}
     
     #Get list of payment params ids
     payment_list = {}
@@ -236,6 +236,7 @@ screenshots for site, (other-) -> casino screenshot
 param_###   -->   parameter_id
 param_mobile  --  297
 param_browser  --  147
+param_download  --  192
 param_audited  --  111
 param_integrity  --  74
 param_license  --  210

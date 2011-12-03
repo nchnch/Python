@@ -8,6 +8,44 @@ from utilites.funcs import easy_upload_path, make_upload_path
 PARAM_VALUES = ((-1, _(u"не определено"),), (0, _(u"нет"),), (1, _(u"да"),), )
 
 
+class ParagraphCategory(models.Model):
+    """
+    Category class for text paragraphs for casino and games.
+    """
+    name = models.CharField(_(u"Название"), max_length=200)
+
+    def __unicode__(self):
+        """
+        Printable view of object
+        """
+        return self.name
+
+    class Meta:
+        verbose_name = _(u"Категория абзаца")
+        verbose_name_plural = _(u"Категории абзацев")
+
+
+class AbstractParagraph(models.Model):
+    """
+    Class of text paragraphs for casino and games.
+    Need for add comments to each block of text
+    """
+    lang = models.ForeignKey(Language, verbose_name=_(u"Язык"))
+    category = models.ForeignKey(ParagraphCategory, verbose_name=_(u"Категория абзаца"))
+    text = models.TextField(_(u"Текст"))
+
+    def __unicode__(self):
+        """
+        Printable view of object
+        """
+        return unicode(self.category)
+
+    class Meta:
+        abstract = True
+        verbose_name = _(u"Абазац текста")
+        verbose_name_plural = _(u"Абзацы текста")
+
+
 class Developer(models.Model):
     """
     Soft developers model. Need for slots and casino
@@ -33,24 +71,26 @@ class Casino(models.Model):
     Casino item model
     """
     STATUSES = ((1, _(u"рабочее казино"),), (2, _(u"казино закрылось"),), (3, _(u"казино не работает"),), )
-    developers = models.ManyToManyField(Developer, verbose_name=_(u"Разработчики"), blank=False)
-    #get list from parameters
+    RELATIONS = ((1, _(u"не определено"),), (2, _(u"особо доверенное"),), (3, _(u"сомнительное"),), )
+    developers = models.ManyToManyField(Developer, verbose_name=_(u"Разработчики"), blank=False) #get list from parameters
     paymentsystems = models.ManyToManyField(PaymentSystem, verbose_name=_(u"Платежные системы"), blank=False, through='casino.CasinoToPaymentSystem') #create type of paymenttype
     name = models.CharField(_(u"Название"), max_length=200)#, unique=True
     similar_sale = models.BooleanField(_(u"Есть ли похожее на продажу")) #new
     domain = models.URLField(_(u"Домен"))
     urlkey = models.SlugField(_(u"ЧПУ ссылка на инфо"))#, unique=True
+    relation = models.SmallIntegerField(_(u"Отношения с казино"), choices=RELATIONS, default=1) #new
     status = models.SmallIntegerField(_(u"Статус казино"), choices=STATUSES, default=1) #new
     link_similar_sale = models.URLField(_(u"Ссылка на купить похожее казино")) #new
     param_mobile = models.SmallIntegerField(_(u"Мобильная версия"), help_text="", choices=PARAM_VALUES, default=-1)
     param_browser = models.SmallIntegerField(_(u"Браузерная версия"), choices=PARAM_VALUES, default=-1)
+    param_download = models.SmallIntegerField(_(u"Скачиваемая версия"), choices=PARAM_VALUES, default=-1)
     param_audited = models.SmallIntegerField(_(u"Проходит аудит"), choices=PARAM_VALUES, default=-1)
-    param_integrity = models.SmallIntegerField(_(u"Контроль честности"), choices=PARAM_VALUES, default=-1)
+    param_integrity = models.SmallIntegerField(_(u"Контроль честности"), choices=PARAM_VALUES, default=-1) #cached from games
     param_license = models.SmallIntegerField(_(u"Лицензия"), choices=PARAM_VALUES, default=-1)
-    param_shift = models.BooleanField(_(u"Контроль честности со сдвигом"), default=False) #cached from games
+    param_shift = models.SmallIntegerField(_(u"Контроль честности со сдвигом"), choices=PARAM_VALUES, default=-1)#cached from games
     param_jackpot = models.SmallIntegerField(_(u"Джекпот"), choices=PARAM_VALUES, default=-1)
-    param_dealer = models.BooleanField(_(u"Игры с живым диллером"), default=False) #cached from games
-    param_multiplayer = models.BooleanField(_(u"Мультиплеерные игры"), default=False) #cached from games
+    param_dealer = models.SmallIntegerField(_(u"Игры с живым диллером"), choices=PARAM_VALUES, default=-1) #cached from games
+    param_multiplayer = models.SmallIntegerField(_(u"Мультиплеерные игры"), choices=PARAM_VALUES, default=-1) #cached from games
     param_tournaments = models.SmallIntegerField(_(u"Турниры"), choices=PARAM_VALUES, default=-1)
     param_nodepositbonus = models.SmallIntegerField(_(u"Бездепозитный бонус"), choices=PARAM_VALUES, default=-1)
     order_google = models.IntegerField(_(u"Сортировка по google"), default=0, blank=True)
@@ -59,6 +99,16 @@ class Casino(models.Model):
     enabled = models.BooleanField(_(u"Показывать на сайте"), default=False)
     old_id = models.IntegerField(_(u"OLDID"), default=0, blank=True)
 
+    def morelinks(self):
+        """
+        Additional link for each casino record
+        """
+        return u"""<a href="%(id)s/screenshots/">Скриншоты</a><br />
+            <a href="%(id)s/paragraphs/">Параграфы</a><br />
+            <a href="%(id)s/articles/">Статьи</a>""" % {"id" : self.id}
+    morelinks.short_description = u"-"
+    morelinks.allow_tags = True    
+
     def __unicode__(self):
         """
         Get name of the entry
@@ -66,7 +116,7 @@ class Casino(models.Model):
         return self.name
 
     class Meta:
-        # ordering = ["name"]
+        ordering = ["name"]
         verbose_name = _(u"Казино")
         verbose_name_plural = _(u"Казино")
 
@@ -105,8 +155,7 @@ class CasinoInfo(models.Model):
     purl_main = models.URLField(_(u"Главная"))
     purl_download = models.URLField(_(u"Скачать"), blank=True)
     purl_bonus = models.URLField(_(u"Бонусы"), blank=True)
-    text = models.TextField(_(u"Статья главная"))
-    # articles = models.ManyToManyField(CasinoArticle, verbose_name=_(u"Статьи остальные"), blank=True)
+    # text = models.TextField(_(u"Статья главная"))
 
     def __unicode__(self):
         """
@@ -117,6 +166,13 @@ class CasinoInfo(models.Model):
     class Meta:
         verbose_name = _(u"Языкозависимые поля казино")
         verbose_name_plural = _(u"Языкозависимые поля казино")
+
+
+class CasinoParagraph(AbstractParagraph):
+    """
+    Paragraphs for casino
+    """
+    casino = models.ForeignKey(Casino, verbose_name=_(u"Казино"))
 
 
 class CasinoArticle(models.Model):
@@ -157,12 +213,47 @@ class CasinoToPaymentSystem(models.Model):
         verbose_name_plural = _(u"Связки казино с платежной системой")
 
 
+class BaseGame(models.Model):
+    """
+    Base (parent) class of games
+    """
+    UPLOAD_DIR = "slots"
+    TYPES = ((1, _(u"Карточные"),), (2, _(u"Гонки"),), (3, _(u"Настольные"),),)
+    similarcasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино с похожими играми"), blank=True, related_name="base_similargames")
+    othercasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино где есть игра"), blank=True, related_name="base_games")
+    gametype = models.SmallIntegerField(_(u"Тип игры"), choices=TYPES)
+    screenshot = models.ImageField(upload_to=make_upload_path, verbose_name=_(u"Скриншот для главной"))
+    rating = models.IntegerField(_(u"Рейтинг показа"), blank=True, default=0)
+    param_offline = models.SmallIntegerField(_(u"Есть offline аналог"), choices=PARAM_VALUES, default=-1)
+    param_rare = models.SmallIntegerField(_(u"Редкая"), choices=PARAM_VALUES, default=-1)
+    param_numberlines = models.SmallIntegerField(_(u"Количество линий"), blank=True, null=True)
+    param_numberdrums = models.SmallIntegerField(_(u"Количество барабанов"), blank=True, null=True)
+    order_google = models.IntegerField(_(u"Сортировка по google"), default=0, blank=True)
+    order_hand = models.IntegerField(_(u"Ручная сортировка"), default=0, blank=True)
+    order_hand_date = models.DateTimeField(_(u"Окончание ручной сортировки"), blank=True, null=True)
+
+
+class BaseGameInfo(models.Model):
+    """
+    Language-depended fields for base game
+    """
+    game = models.ForeignKey(BaseGame)
+    lang = models.ForeignKey(Language, verbose_name=_(u"Язык"))
+    name = models.CharField(_(u"Название"), max_length=250)
+    urlkey = models.SlugField(_(u"URL ключ игры"), unique=True, null=True)
+    text = models.TextField(_(u"Статья"))
+    tags_picture = models.CharField(_(u"Теги картинки на барабанах"), max_length=200, blank=True)
+    tags_theme = models.CharField(_(u"Теги темы"), max_length=200, blank=True)
+    tags_name = models.CharField(_(u"Теги названия"), max_length=200, blank=True)
+
+
 class Game(models.Model):
     """
     Casino game object
     """
     UPLOAD_DIR = "slots"
     TYPES = ((1, _(u"Слоты"),), (2, _(u"Рулетка"),),)
+    parent = models.ForeignKey(BaseGame, verbose_name=_(u"Главная игра"))
     developers = models.ManyToManyField(Developer, verbose_name=_(u"Разработчики"), blank=False)
     maincasino = models.ForeignKey(Casino, verbose_name=_(u"Главное казино"), blank=False)
     othercasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино где есть игра"), blank=True, \
@@ -205,28 +296,6 @@ class Game(models.Model):
         # ordering = ["name"]
         verbose_name = _(u"Игра")
         verbose_name_plural = _(u"Игры")
-
-
-'''
-class Slot(Game):
-    """
-    Slot type of game.
-    """
-
-    class Meta:
-        verbose_name = _(u"Слот")
-        verbose_name_plural = _(u"Слоты")
-
-
-class Roulette(Game):
-    """
-    Roulette type of game.
-    """
-
-    class Meta:
-        verbose_name = _(u"Рулетка")
-        verbose_name_plural = _(u"Рулетки")
-'''
 
 
 class GameImage(models.Model):
