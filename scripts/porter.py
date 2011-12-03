@@ -65,7 +65,7 @@ def _casino():
         param_audited, param_integrity, param_license, param_jackpot, param_tournaments, 
         param_nodepositbonus, old_id, param_shift, param_dealer, param_multiplayer, 
         similar_sale, urlkey, status, link_similar_sale, order_google, order_hand, enabled) 
-        VALUES(%s, %s, -1, -1, -1, -1, -1, -1, -1, -1, %s, -1, -1, -1, -1, '', 1, '', 0, 0, false) 
+        VALUES(%s, %s, -1, -1, -1, -1, -1, -1, -1, -1, %s, -1, -1, -1, false, '', 1, '', 0, 0, false) 
         RETURNING id""", (casino_name, item["domain"], item["id"]))
         new_id = c_new.fetchone()[0]
 
