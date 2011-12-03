@@ -293,7 +293,7 @@ class Game(models.Model):
     UPLOAD_DIR = "slots"
     TYPES = ((1, _(u"Слоты"),), (2, _(u"Рулетка"),),)
     DEMOS = ((0, _(u"неизвестно"),), (1, _(u"с регистрацией"),), (2, _(u"без регистрации у нас на сайте"),), (3, _(u"нет"),),)
-    parent = models.ForeignKey(BaseGame, verbose_name=_(u"Главная игра"))
+    parent = models.ForeignKey(BaseGame, verbose_name=_(u"Главная игра"), null=True)
     interfacelangs = models.ManyToManyField(Language, verbose_name=_(u"Язык интерфейса"))
     developers = models.ManyToManyField(Developer, verbose_name=_(u"Разработчики"))
     # interface_lang = models.ForeignKey(Language, verbose_name=_(u"Язык интерфейса"))

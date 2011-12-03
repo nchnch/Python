@@ -13,8 +13,8 @@ def main():
     # _casino()
     # _casino_params()
     # _casino_screenshots()
-    # _games()
-    # _games_developers()
+    _games()
+    _games_developers()
 
 
 def _developers():
@@ -61,18 +61,21 @@ def _casino():
 
     for item in c_old.fetchall():
         casino_name = item["name"] if item["name"] else item["domain"]
-        c_new.execute("""INSERT INTO casino_casino(name, domain, param_mobile, param_browser, 
+        c_new.execute("""INSERT INTO casino_casino(name, domain, param_mobile, param_download, param_browser, 
         param_audited, param_integrity, param_license, param_jackpot, param_tournaments, 
         param_nodepositbonus, old_id, param_shift, param_dealer, param_multiplayer, 
-        similar_sale, urlkey, status, link_similar_sale, order_google, order_hand, enabled) 
-        VALUES(%s, %s, -1, -1, -1, -1, -1, -1, -1, -1, %s, -1, -1, -1, false, '', 1, '', 0, 0, false) 
+        similar_sale, urlkey, status, link_similar_sale, order_google, order_hand, enabled, relation) 
+        VALUES(%s, %s, -1, -1, -1, -1, -1, -1, -1, -1, -1, %s, -1, -1, -1, false, '', 1, '', 0, 0, false, 1) 
         RETURNING id""", (casino_name, item["domain"], item["id"]))
         new_id = c_new.fetchone()[0]
 
         item_image = item["image"] if item["image"] else ""
         c_new.execute("""INSERT INTO casino_casinoinfo(casino_id, lang_id, name, image, description, 
-        text, purl_main, purl_download, purl_bonus) VALUES(%s, 1, %s, %s, %s, %s, %s, '', '')""", 
-        (new_id, item["name"], item_image, item["description"], item["text"], item["purl_main"]))
+        purl_main, purl_download, purl_bonus) VALUES(%s, 1, %s, %s, %s, %s, '', '')""", 
+        (new_id, item["name"], item_image, item["description"], item["purl_main"]))
+        # c_new.execute("""INSERT INTO casino_casinoinfo(casino_id, lang_id, name, image, description, 
+        # text, purl_main, purl_download, purl_bonus) VALUES(%s, 1, %s, %s, %s, %s, %s, '', '')""", 
+        # (new_id, item["name"], item_image, item["description"], item["text"], item["purl_main"]))
     conn_new.commit()
 
 
@@ -200,16 +203,16 @@ def _games():
 
         c_new.execute("""INSERT INTO casino_game(gametype, name, screenshot, flash_width, flash_height, 
             flash_enabled, order_hand, flash_inframe, maincasino_id, order_google, param_sale, param_gambling, 
-            param_offline, param_mobile, param_integrity, param_shift, param_dealer, param_multiplayer, 
+            param_demo, param_mobile, param_integrity, param_shift, param_dealer, param_multiplayer, 
             param_tele, param_jackpot, enabled, old_id) VALUES(0, %s, %s, %s, %s, %s, %s, %s, %s, 0, -1, 
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, false, %s) RETURNING id""", (item["info__name"], 
+            -1, 0, -1, -1, -1, -1, -1, -1, -1, false, %s) RETURNING id""", (item["info__name"], 
             item["screenshot"], item["flash_width"], item["flash_height"], item["flash_enabled"], item["order_hand"],
             ('true' if item["flash_inframe"] == "1" else 'false'), old_to_new[item["casino_id"]], item["id"]))
         new_id = c_new.fetchone()[0]
 
         c_new.execute("""INSERT INTO casino_gameinfo(urlkey, game_id, lang_id, name, url_play_side, 
-            tags_picture, tags_theme, tags_name, text, selltext, url_buy_our, url_play_our, 
-            url_flash, url_buy_side) VALUES(null, %s, 1, %s, %s, '', '', '', '', '', null, null, null, null)""", 
+            tags_picture, tags_theme, tags_name, selltext, url_buy_our, url_play_our, 
+            url_flash, url_buy_side) VALUES(null, %s, 1, %s, %s, '', '', '', '', null, null, null, null)""", 
             (new_id, item["info__name"], item["info__url_play_side"]))
     conn_new.commit()
 
