@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from casino.models import ParagraphCategory, Game, Developer, Casino, CasinoInfo, CasinoImage, \
-    CasinoToPaymentSystem, CasinoArticle, CasinoParagraph, GameImage, GameInfo, GameToCasino 
+    CasinoToPaymentSystem, CasinoArticle, CasinoParagraph, GameImage, GameInfo, GameParagraph, \
+    GameToCasino, BaseGame, BaseGameInfo, BaseGameParagraph
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 from utilites.admin_models import ModifyModelAdmin
@@ -65,6 +66,42 @@ class CasinoAdmin(ModifyModelAdmin):
     )
 
 
+class BaseGameInfoInline(admin.StackedInline):
+    model = BaseGameInfo
+    extra = 0
+
+
+class BaseGameParagraphInline(admin.StackedInline):
+    model = BaseGameParagraph
+    extra = 0
+
+
+class BaseGameAdmin(ModifyModelAdmin):
+    """
+    Admin class for BaseGame models
+    """
+    fieldsets = (
+        (_(u"Основное инфо"), {'fields': ('name', 'gametype', 'screenshot', 'similarcasino', 'othercasino', 
+            'rating',)}),
+        (_(u"Параметры"), {'fields': ('param_offline', 'param_rare',)}),
+        (_(u"Параметры слотов"), {'fields': ('param_numberlines', 'param_numberdrums', )}),
+        # (_(u"Параметры рулетки"), {'fields': ('param_minbet', 'param_maxbet', 'param_ratio', )}),
+        (_(u"Сортировка"), {'fields': ('order_hand', 'order_hand_date', )}),
+    )
+    search_fields = ("name",  )
+    list_display = ("morelinks", "name", "gametype", "enabled", )
+    list_display_links = ("name",)
+    list_filter = ("enabled", "gametype", )
+    inlines = (BaseGameInfoInline, )
+    filter_horizontal = ('similarcasino', 'othercasino', )
+    ordering = ("enabled", )
+    save_on_top = True
+    inlines_formsets_pages = (
+        (_(u"Параграфы"), "paragraphs", {"models" : (BaseGameParagraphInline,)}),
+        # (_(u"Скриншоты"), "screenshots", {"models" : (CasinoImageInline,)}),
+    )
+
+
 class GameInfoInline(admin.StackedInline):
     model = GameInfo
     extra = 0
@@ -75,13 +112,21 @@ class GameImageInline(admin.TabularInline):
     extra = 1
 
 
-class GameAdmin(admin.ModelAdmin):
+class GameParagraphInline(admin.StackedInline):
+    model = GameParagraph
+    extra = 0
+
+
+class GameAdmin(ModifyModelAdmin):
     """
+    Admin class for casino game object
     """
     fieldsets = (
-        (_(u"Основное инфо"), {'fields': ('name', 'gametype', 'screenshot', 'developers', 'maincasino', )}),
-        (_(u"Общие параметры"), {'fields': ('param_sale', 'param_gambling', 'param_offline', 'param_mobile', 
-            'param_integrity', 'param_jackpot', )}),
+        (_(u"Основное инфо"), {'fields': ('name', 'gametype', 'screenshot', 'interfacelangs', 
+            'developers', 'maincasino', )}),
+        (_(u"Общие параметры"), {'fields': ('param_demo', 'param_sale', 'param_gambling', 'param_mobile', 
+            'param_integrity', 'param_shift', 'param_dealer', 'param_multiplayer', 'param_tele',
+            'param_jackpot', )}),
         (_(u"Параметры слотов"), {'fields': ('param_numberlines', 'param_numberdrums', )}),
         (_(u"Параметры рулетки"), {'fields': ('param_minbet', 'param_maxbet', 'param_ratio', )}),
         (_(u"Сортировка"), {'fields': ('order_hand', 'order_hand_date', )}),
@@ -89,15 +134,21 @@ class GameAdmin(admin.ModelAdmin):
             'flash_inframe', )}),
     )
     search_fields = ("name",  )
-    list_display = ("name", "gametype", "enabled", )
+    list_display = ("morelinks", "name", "gametype", "enabled", )
+    list_display_links = ("name",)
     list_filter = ("enabled", "gametype", )
     inlines = (GameInfoInline, GameImageInline, ) #GameToCasinoInline,
-    filter_horizontal = ('developers', )
+    filter_horizontal = ('developers', 'interfacelangs', )
     ordering = ("enabled", )
     save_on_top = True
+    inlines_formsets_pages = (
+        (_(u"Параграфы"), "paragraphs", {"models" : (GameParagraphInline,)}),
+        # (_(u"Скриншоты"), "screenshots", {"models" : (CasinoImageInline,)}),
+    )
 
 
 admin.site.register(Developer)
+admin.site.register(ParagraphCategory)
+admin.site.register(BaseGame, BaseGameAdmin)
 admin.site.register(Casino, CasinoAdmin)
 admin.site.register(Game, GameAdmin)
-admin.site.register(ParagraphCategory)

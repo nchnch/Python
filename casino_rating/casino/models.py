@@ -177,7 +177,7 @@ class CasinoParagraph(AbstractParagraph):
 
 class CasinoArticle(models.Model):
     """
-    Articles for casino. Used like casino text bun need ManyToMany relate
+    Articles for casino. Simple text model
     """
     casino = models.ForeignKey(Casino, verbose_name=_(u"Казино"))
     lang = models.ForeignKey(Language, verbose_name=_(u"Язык"))
@@ -221,6 +221,7 @@ class BaseGame(models.Model):
     TYPES = ((1, _(u"Карточные"),), (2, _(u"Гонки"),), (3, _(u"Настольные"),),)
     similarcasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино с похожими играми"), blank=True, related_name="base_similargames")
     othercasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино где есть игра"), blank=True, related_name="base_games")
+    name = models.CharField(_(u"Название"), max_length=250, unique=True)
     gametype = models.SmallIntegerField(_(u"Тип игры"), choices=TYPES)
     screenshot = models.ImageField(upload_to=make_upload_path, verbose_name=_(u"Скриншот для главной"))
     rating = models.IntegerField(_(u"Рейтинг показа"), blank=True, default=0)
@@ -231,6 +232,26 @@ class BaseGame(models.Model):
     order_google = models.IntegerField(_(u"Сортировка по google"), default=0, blank=True)
     order_hand = models.IntegerField(_(u"Ручная сортировка"), default=0, blank=True)
     order_hand_date = models.DateTimeField(_(u"Окончание ручной сортировки"), blank=True, null=True)
+    enabled = models.BooleanField(_(u"Показывать на сайте"), default=False)
+
+    def morelinks(self):
+        """
+        Additional link for each casino record
+        """
+        return u"""<a href="%(id)s/paragraphs/">Параграфы</a>""" % {"id" : self.id}
+    morelinks.short_description = u"-"
+    morelinks.allow_tags = True    
+
+    def __unicode__(self):
+        """
+        Get name of the entry
+        """
+        return self.name
+
+    class Meta:
+        # ordering = ["name"]
+        verbose_name = _(u"Основная игра")
+        verbose_name_plural = _(u"Основные игры")
 
 
 class BaseGameInfo(models.Model):
@@ -246,6 +267,24 @@ class BaseGameInfo(models.Model):
     tags_theme = models.CharField(_(u"Теги темы"), max_length=200, blank=True)
     tags_name = models.CharField(_(u"Теги названия"), max_length=200, blank=True)
 
+    def __unicode__(self):
+        """
+        Get name of the entry
+        """
+        return self.name
+
+    class Meta:
+        # ordering = ["name"]
+        verbose_name = _(u"Информация основной игры")
+        verbose_name_plural = _(u"Информация основной игры")
+
+
+class BaseGameParagraph(AbstractParagraph):
+    """
+    Text paragraphs for games
+    """
+    game = models.ForeignKey(BaseGame, verbose_name=_(u"Игра"))
+
 
 class Game(models.Model):
     """
@@ -253,9 +292,12 @@ class Game(models.Model):
     """
     UPLOAD_DIR = "slots"
     TYPES = ((1, _(u"Слоты"),), (2, _(u"Рулетка"),),)
+    DEMOS = ((0, _(u"неизвестно"),), (1, _(u"с регистрацией"),), (2, _(u"без регистрации у нас на сайте"),), (3, _(u"нет"),),)
     parent = models.ForeignKey(BaseGame, verbose_name=_(u"Главная игра"))
-    developers = models.ManyToManyField(Developer, verbose_name=_(u"Разработчики"), blank=False)
-    maincasino = models.ForeignKey(Casino, verbose_name=_(u"Главное казино"), blank=False)
+    interfacelangs = models.ManyToManyField(Language, verbose_name=_(u"Язык интерфейса"))
+    developers = models.ManyToManyField(Developer, verbose_name=_(u"Разработчики"))
+    # interface_lang = models.ForeignKey(Language, verbose_name=_(u"Язык интерфейса"))
+    maincasino = models.ForeignKey(Casino, verbose_name=_(u"Главное казино"))
     othercasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино где есть игра"), blank=True, \
         related_name="games", through="casino.GameToCasino")
     name = models.CharField(_(u"Название"), max_length=250)#, null=True, unique=True
@@ -264,9 +306,10 @@ class Game(models.Model):
     order_google = models.IntegerField(_(u"Сортировка по google"), default=0, blank=True)
     order_hand = models.IntegerField(_(u"Ручная сортировка"), default=0, blank=True)
     order_hand_date = models.DateTimeField(_(u"Окончание ручной сортировки"), blank=True, null=True)
+    param_demo = models.SmallIntegerField(_(u"Демо"), choices=DEMOS, default=0)
     param_sale = models.SmallIntegerField(_(u"Продается"), choices=PARAM_VALUES, default=-1)
     param_gambling = models.SmallIntegerField(_(u"Азартная"), choices=PARAM_VALUES, default=-1)
-    param_offline = models.SmallIntegerField(_(u"Есть offline аналог"), choices=PARAM_VALUES, default=-1)
+    # param_offline = models.SmallIntegerField(_(u"Есть offline аналог"), choices=PARAM_VALUES, default=-1)
     param_mobile = models.SmallIntegerField(_(u"Мобильная версия"), choices=PARAM_VALUES, default=-1)
     param_integrity = models.SmallIntegerField(_(u"Контроль честности"), choices=PARAM_VALUES, default=-1)
     param_shift = models.SmallIntegerField(_(u"Контроль честности со сдвигом"), choices=PARAM_VALUES, default=-1)
@@ -285,6 +328,14 @@ class Game(models.Model):
     flash_inframe = models.BooleanField(_(u"Открывать во фрейме"), default=True)
     enabled = models.BooleanField(_(u"Показывать на сайте"), default=False)
     old_id = models.IntegerField(_(u"OLDID"), default=0, blank=True)
+
+    def morelinks(self):
+        """
+        Additional link for each casino record
+        """
+        return u"""<a href="%(id)s/paragraphs/">Параграфы</a>""" % {"id" : self.id}
+    morelinks.short_description = u"-"
+    morelinks.allow_tags = True    
 
     def __unicode__(self):
         """
@@ -326,8 +377,8 @@ class GameInfo(models.Model):
     game = models.ForeignKey(Game)
     lang = models.ForeignKey(Language, verbose_name=_(u"Язык"))
     name = models.CharField(_(u"Название"), max_length=250)
-    urlkey = models.SlugField(_(u"URL ключ игры"), unique=True, null=True)
-    text = models.TextField(_(u"Статья"))
+    urlkey = models.SlugField(_(u"URL на инфо"), unique=True, null=True)
+    # text = models.TextField(_(u"Статья"))
     selltext = models.TextField(_(u"Статья (для купить игру)"))
     tags_picture = models.CharField(_(u"Теги картинки на барабанах"), max_length=200, blank=True)
     tags_theme = models.CharField(_(u"Теги темы"), max_length=200, blank=True)
@@ -348,6 +399,13 @@ class GameInfo(models.Model):
     class Meta:
         verbose_name = _(u"Языковые поля")
         verbose_name_plural = _(u"Языковые поля")
+
+
+class GameParagraph(AbstractParagraph):
+    """
+    Text paragraphs for games
+    """
+    game = models.ForeignKey(Game, verbose_name=_(u"Игра"))
 
 
 class GameToCasino(models.Model):
