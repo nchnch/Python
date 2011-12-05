@@ -6,7 +6,7 @@ from django.contrib import admin
 # from django.contrib.admin import SimpleListFilter
 from django.utils.translation import ugettext as _
 from utilites.admin_models import ModifyModelAdmin
-from versioner.admin_models import ModelAdmin as VersionModelAdmin
+# from versioner.admin_models import ModelAdmin as VersionModelAdmin
 
 
 class CasinoToPaymentSystemInline(admin.TabularInline):
@@ -43,7 +43,7 @@ class CasinoParagraphInline(admin.StackedInline):
     extra = 0
 
 
-class CasinoAdmin(VersionModelAdmin, ModifyModelAdmin):
+class CasinoAdmin(ModifyModelAdmin): #VersionModelAdmin, 
     fieldsets = (
         (_(u"Основное инфо"), {"fields" : ("name", "urlkey", "domain", "similar_sale", "status", 
             "relation", "link_similar_sale",)}),
