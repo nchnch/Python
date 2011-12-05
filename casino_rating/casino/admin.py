@@ -3,8 +3,10 @@ from casino.models import ParagraphCategory, Game, Developer, Casino, CasinoInfo
     CasinoToPaymentSystem, CasinoArticle, CasinoParagraph, GameImage, GameInfo, GameParagraph, \
     GameToCasino, BaseGame, BaseGameInfo, BaseGameParagraph
 from django.contrib import admin
+# from django.contrib.admin import SimpleListFilter
 from django.utils.translation import ugettext as _
 from utilites.admin_models import ModifyModelAdmin
+from versioner.admin_models import ModelAdmin as VersionModelAdmin
 
 
 class CasinoToPaymentSystemInline(admin.TabularInline):
@@ -41,7 +43,7 @@ class CasinoParagraphInline(admin.StackedInline):
     extra = 0
 
 
-class CasinoAdmin(ModifyModelAdmin):
+class CasinoAdmin(VersionModelAdmin, ModifyModelAdmin):
     fieldsets = (
         (_(u"Основное инфо"), {"fields" : ("name", "urlkey", "domain", "similar_sale", "status", 
             "relation", "link_similar_sale",)}),
@@ -55,7 +57,7 @@ class CasinoAdmin(ModifyModelAdmin):
     filter_horizontal = ('developers', )
     list_display = ("morelinks", "name", "domain", "relation", "status", "enabled", )
     list_display_links = ("name",)
-    list_filter = ("enabled", "status", "relation", )
+    list_filter = ("developers", "enabled", "status", "relation", )
     ordering = ("enabled", )
     search_fields = ("name", "domain", )
     save_on_top = True
@@ -81,7 +83,7 @@ class BaseGameAdmin(ModifyModelAdmin):
     Admin class for BaseGame models
     """
     fieldsets = (
-        (_(u"Основное инфо"), {'fields': ('name', 'gametype', 'screenshot', 'similarcasino', 'othercasino', 
+        (_(u"Основное инфо"), {'fields': ('name', 'gametype', 'screenshot', 'othercasino', 'similarcasino', 
             'rating',)}),
         (_(u"Параметры"), {'fields': ('param_offline', 'param_rare',)}),
         (_(u"Параметры слотов"), {'fields': ('param_numberlines', 'param_numberdrums', )}),
@@ -91,7 +93,7 @@ class BaseGameAdmin(ModifyModelAdmin):
     search_fields = ("name",  )
     list_display = ("morelinks", "name", "gametype", "enabled", )
     list_display_links = ("name",)
-    list_filter = ("enabled", "gametype", )
+    list_filter = ("othercasino", "enabled", "gametype", "param_offline", "param_rare",)
     inlines = (BaseGameInfoInline, )
     filter_horizontal = ('similarcasino', 'othercasino', )
     ordering = ("enabled", )
@@ -136,7 +138,8 @@ class GameAdmin(ModifyModelAdmin):
     search_fields = ("name",  )
     list_display = ("morelinks", "name", "gametype", "enabled", )
     list_display_links = ("name",)
-    list_filter = ("enabled", "gametype", )
+    list_filter = ("developers", "maincasino", "enabled", "gametype", "interfacelangs", )
+    # list_select_related = ("maincasino",)
     inlines = (GameInfoInline, GameImageInline, ) #GameToCasinoInline,
     filter_horizontal = ('developers', 'interfacelangs', )
     ordering = ("enabled", )

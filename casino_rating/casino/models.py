@@ -62,6 +62,7 @@ class Developer(models.Model):
         return self.name
 
     class Meta:
+        ordering = ["name"]
         verbose_name = _(u"Разработчик")
         verbose_name_plural = _(u"Разработчики")
 
@@ -174,6 +175,8 @@ class CasinoParagraph(AbstractParagraph):
     """
     casino = models.ForeignKey(Casino, verbose_name=_(u"Казино"))
 
+    class Meta:
+        unique_together = ["casino", "category", "lang"]
 
 class CasinoArticle(models.Model):
     """
@@ -219,8 +222,8 @@ class BaseGame(models.Model):
     """
     UPLOAD_DIR = "slots"
     TYPES = ((1, _(u"Карточные"),), (2, _(u"Гонки"),), (3, _(u"Настольные"),),)
-    similarcasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино с похожими играми"), blank=True, related_name="base_similargames")
     othercasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино где есть игра"), blank=True, related_name="base_games")
+    similarcasino = models.ManyToManyField(Casino, verbose_name=_(u"Казино с похожими играми"), blank=True, related_name="base_similargames")
     name = models.CharField(_(u"Название"), max_length=250, unique=True)
     gametype = models.SmallIntegerField(_(u"Тип игры"), choices=TYPES)
     screenshot = models.ImageField(upload_to=make_upload_path, verbose_name=_(u"Скриншот для главной"))
@@ -284,6 +287,9 @@ class BaseGameParagraph(AbstractParagraph):
     Text paragraphs for games
     """
     game = models.ForeignKey(BaseGame, verbose_name=_(u"Игра"))
+
+    class Meta:
+        unique_together = ["game", "category", "lang"]
 
 
 class Game(models.Model):
@@ -406,6 +412,9 @@ class GameParagraph(AbstractParagraph):
     Text paragraphs for games
     """
     game = models.ForeignKey(Game, verbose_name=_(u"Игра"))
+
+    class Meta:
+        unique_together = ["game", "category", "lang"]
 
 
 class GameToCasino(models.Model):
