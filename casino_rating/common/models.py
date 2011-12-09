@@ -2,7 +2,7 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 from utilites.funcs import easy_upload_path
-from versioner.models import Versioner
+# from versioner.models import Versioner
 
 
 class TestModel(models.Model):#Versioner):
