@@ -13,8 +13,8 @@ def main():
     # _casino()
     # _casino_params()
     # _casino_screenshots()
-    _games()
-    _games_developers()
+    # _games()
+    # _games_developers()
 
 
 def _developers():

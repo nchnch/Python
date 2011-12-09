@@ -2,6 +2,28 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 from utilites.funcs import easy_upload_path
+from versioner.models import Versioner
+
+
+class TestModel(models.Model):#Versioner):
+    """
+    Test model for version control
+    """
+    STATUSES = ((1, _(u"Новый"),), (2, _(u"Не новый"),), (3, _(u"Старый"),), )
+    name = models.CharField(_(u"Название"), max_length=100)
+    text = models.TextField(_(u"Текст"))
+    value = models.IntegerField(_(u"Число"))
+    status = models.IntegerField(_(u"Статус"), choices=STATUSES)
+
+    def __unicode__(self):
+        """
+        Returns an unicode representation.
+        """
+        return self.name
+
+    class Meta:
+        verbose_name = _(u"Тест")
+        verbose_name_plural = _(u"Тест")
 
 
 class Language(models.Model):
@@ -13,7 +35,7 @@ class Language(models.Model):
 
     def __unicode__(self):
         """
-        Get name of language
+        Returns an unicode representation.
         """
         return self.name
 
@@ -33,7 +55,7 @@ class PaymentSystem(models.Model):
 
     def __unicode__(self):
         """
-        Printable view for object
+        Returns an unicode representation.
         """
         return self.name
 

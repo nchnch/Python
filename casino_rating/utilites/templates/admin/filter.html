@@ -1,8 +1,7 @@
 {% load i18n %}
 <h3>{% blocktrans with title as filter_title %} By {{ filter_title }} {% endblocktrans %}</h3>
-{% with counter=choices|length %}
 <div align="right">
-    {% if counter > 10 %}
+    {% if choices|length > 10 %}
     <select onChange="javascript:window.location = this.options[this.selectedIndex].value;" style="width: 95%">
         {% for choice in choices %}
         <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}">
@@ -19,4 +18,3 @@
     </ul>
     {% endif %}
 </div>
-{% endwith %}

@@ -104,6 +104,8 @@ INSTALLED_APPS = (
     'common',
     'publications',
     'utilites',
+    # 'versioner',
+    'reversion',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -112,6 +114,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    # 'ormcache',
     # 'tinymce',
     # 'grappelli',
     # 'filebrowser',
@@ -126,6 +129,17 @@ AUTHENTICATION_BACKENDS = (
 # AUTH_PROFILE_MODULE = 'profile.UserProfile'
 LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+
+if DEBUG:
+    from debug_local import *
 
 
 # A sample logging configuration. The only tangible logging

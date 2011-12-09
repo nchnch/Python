@@ -2,6 +2,7 @@
 from common.models import Language, PaymentSystem
 from django.db import models
 from django.utils.translation import ugettext as _
+# from ormcache.models import CachedModel
 from utilites.funcs import easy_upload_path, make_upload_path
 
 
@@ -42,8 +43,6 @@ class AbstractParagraph(models.Model):
 
     class Meta:
         abstract = True
-        verbose_name = _(u"Абазац текста")
-        verbose_name_plural = _(u"Абзацы текста")
 
 
 class Developer(models.Model):
@@ -177,6 +176,9 @@ class CasinoParagraph(AbstractParagraph):
 
     class Meta:
         unique_together = ["casino", "category", "lang"]
+        verbose_name = _(u"Абазац текста")
+        verbose_name_plural = _(u"Абзацы текста")
+
 
 class CasinoArticle(models.Model):
     """
@@ -208,7 +210,7 @@ class CasinoToPaymentSystem(models.Model):
     type = models.SmallIntegerField(_(u"Тип платежки"), choices=TYPES, default=3) #new
 
     def __unicode__(self):
-        return u"Платежная система"
+        return unicode(self.paymentsystem)
 
     class Meta:
         unique_together = ("paymentsystem", "casino", )
@@ -290,6 +292,8 @@ class BaseGameParagraph(AbstractParagraph):
 
     class Meta:
         unique_together = ["game", "category", "lang"]
+        verbose_name = _(u"Абазац текста")
+        verbose_name_plural = _(u"Абзацы текста")
 
 
 class Game(models.Model):
@@ -415,6 +419,8 @@ class GameParagraph(AbstractParagraph):
 
     class Meta:
         unique_together = ["game", "category", "lang"]
+        verbose_name = _(u"Абазац текста")
+        verbose_name_plural = _(u"Абзацы текста")
 
 
 class GameToCasino(models.Model):

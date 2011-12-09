@@ -61,7 +61,7 @@ def copy_file(url, folder, ext):
     """
     Copy file to new folder
     `url` - file URL
-    `path` - needed folder for new file
+    dbpath` - needed folder for new file
     """
     f = urllib.urlopen(url)
     filename = generate_filename(folder, ext)

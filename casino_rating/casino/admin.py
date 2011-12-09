@@ -5,6 +5,7 @@ from casino.models import ParagraphCategory, Game, Developer, Casino, CasinoInfo
 from django.contrib import admin
 # from django.contrib.admin import SimpleListFilter
 from django.utils.translation import ugettext as _
+from reversion.admin import VersionAdmin
 from utilites.admin_models import ModifyModelAdmin
 # from versioner.admin_models import ModelAdmin as VersionModelAdmin
 
@@ -43,7 +44,9 @@ class CasinoParagraphInline(admin.StackedInline):
     extra = 0
 
 
-class CasinoAdmin(ModifyModelAdmin): #VersionModelAdmin, 
+class CasinoAdmin(VersionAdmin): #VersionModelAdmin, #ModifyModelAdmin
+    ignore_duplicate_revisions = True
+    history_latest_first = True
     fieldsets = (
         (_(u"Основное инфо"), {"fields" : ("name", "urlkey", "domain", "similar_sale", "status", 
             "relation", "link_similar_sale",)}),
