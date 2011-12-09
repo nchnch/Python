@@ -411,6 +411,7 @@ class RevisionManager(object):
                 (obj, self.get_adapter(obj.__class__).get_version_data(obj, VERSION_CHANGE))
                 for obj in objects
             )
+        latest_revision = None
         # Create the revision.
         if objects:
             # Follow relationships.
