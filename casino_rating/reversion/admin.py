@@ -19,7 +19,7 @@ from django.utils.text import capfirst
 from django.utils.translation import ugettext as _
 from django.utils.encoding import force_unicode
 
-from reversion.models import Revision, Version
+from reversion.models import Revision, Version, REVISION_CURRENT
 from reversion.revisions import revision_context_manager, default_revision_manager
 
 
@@ -130,9 +130,8 @@ class VersionAdmin(admin.ModelAdmin):
                 for deleted_form in formset.deleted_forms:
                     changes[self._model_key(deleted_form.initial["id"], deleted_form.instance)] = "delete"
         
-        # assert 0
-        # self._changes = changes
         revision_context_manager.set_changes(changes)
+        revision_context_manager.set_mainobject(form.instance)
         return super(VersionAdmin, self).construct_change_message(request, form, formsets)
 
     def log_addition(self, request, object):
@@ -445,7 +444,7 @@ class RevisionAdmin(admin.ModelAdmin):
         Get extra queryset. Group records by version_group field
         """
         qs = super(RevisionAdmin, self).queryset(request)
-        qs = qs.exclude(type=1)
+        qs = qs.filter(type=REVISION_CURRENT)
         return qs
 
 

@@ -31,11 +31,13 @@ class RevertError(Exception):
     """Exception thrown when something goes wrong with reverting a model."""
 
 
-REVISION_TYPE_CHOICES = ((1, _("Initial")), (2, _("New")), (3, _("Discard")), (4, _("Accept")))
+REVISION_TYPE_CHOICES = ((1, _("Initial")), (4, _("Previous")), (5, _("Current")), (2, _("Discard")), 
+    (3, _("Accept")))
 REVISION_INITIAL = 1
-REVISION_NEW = 2
-REVISION_DISCARD = 3
-REVISION_ACCEPT = 4
+REVISION_DISCARD = 2
+REVISION_ACCEPT = 3
+REVISION_PREVIOUS = 4
+REVISION_CURRENT = 5
 
 
 class Revision(models.Model):
@@ -233,6 +235,17 @@ class Version(models.Model):
                     result.append({"title" : title, "key" : key, "value" : values[key]})
             setattr(self, "_updated_data_cache", result)
         return getattr(self, "_updated_data_cache")
+
+    def get_updated_data(self):
+        """
+        Get unserialized updated data of version
+        """
+        if not hasattr(self, "_updated_data_unpack_cache"):
+            values = ""
+            if self.updated_data:
+                values = simplejson.loads(self.updated_data)
+            setattr(self, "_updated_data_unpack_cache", values)
+        return getattr(self, "_updated_data_unpack_cache")
 
     @property
     def object_version(self):

@@ -20,8 +20,8 @@ from django.db.models.query import QuerySet
 from django.db.models.signals import post_save, pre_delete
 from django.utils import simplejson
 
-from reversion.models import Revision, Version, VERSION_ADD, VERSION_CHANGE, VERSION_DELETE, has_int_pk, deprecated, \
-    REVISION_NEW, REVISION_INITIAL
+from reversion.models import Revision, Version, VERSION_ADD, VERSION_CHANGE, VERSION_DELETE, \
+    has_int_pk, deprecated, REVISION_PREVIOUS, REVISION_CURRENT, REVISION_INITIAL, REVISION_ACCEPT
 
 
 class VersionAdapter(object):
@@ -128,6 +128,7 @@ class RevisionContextManager(local):
     
     def clear(self):
         """Puts the revision manager back into its default state."""
+        self._mainobject = None
         self._changes = {}
         self._objects = {}
         self._user = None
@@ -210,14 +211,24 @@ class RevisionContextManager(local):
         return self._comment        
         
     def set_changes(self, changes):
-        """Sets the dict of changes for the revision."""
+        """Sets the dict of changes for the revision"""
         self._assert_active()
         self._changes = changes
     
     def get_changes(self):
-        """Gets the current dict of changes for the revision."""
+        """Gets the current dict of changes for the revision"""
         self._assert_active()
         return self._changes
+        
+    def set_mainobject(self, obj):
+        """Set the main object for which create the revision"""
+        self._assert_active()
+        self._mainobject = obj
+    
+    def get_mainobject(self):
+        """Get the main bject for detect revision history of object"""
+        self._assert_active()
+        return self._mainobject
         
     def add_meta(self, cls, **kwargs):
         """Adds a class of meta information to the current revision."""
@@ -411,7 +422,7 @@ class RevisionManager(object):
                 (obj, self.get_adapter(obj.__class__).get_version_data(obj, VERSION_CHANGE))
                 for obj in objects
             )
-        latest_revision = None
+        current_revision, latest_revision = (None,)*2
         # Create the revision.
         if objects:
             # Follow relationships.
@@ -427,26 +438,42 @@ class RevisionManager(object):
                 # Find the latest revision amongst the latest previous version of each object.
                 subqueries = [Q(object_id=version.object_id, content_type=version.content_type) for version in new_versions]
                 subqueries = reduce(operator.or_, subqueries)
-                latest_revision = self._get_versions().filter(subqueries).aggregate(Max("revision"))["revision__max"]
+                latest_revision = self._get_versions().filter(subqueries, revision__type=REVISION_ACCEPT)\
+                    .aggregate(Max("revision"))["revision__max"]
+                current_revision = self._get_versions().filter(subqueries, revision__type=REVISION_CURRENT)\
+                    .aggregate(Max("revision"))["revision__max"]
                 # If we have a latest revision, compare it to the current revision.
                 if latest_revision is not None:
-                    previous_versions = self._get_versions().filter(revision=latest_revision).values_list("serialized_data", flat=True)
-                    if len(previous_versions) == len(new_versions):
+                    base_versions = self._get_versions().filter(revision=latest_revision).values_list("serialized_data", flat=True)
+                    if current_revision != latest_revision:
+                        previous_versions = self._get_versions().filter(revision=current_revision)\
+                            .values_list("serialized_data", "updated_data", "object_id", "content_type")
+                        previous_versions_data = [x[0] for x in previous_versions]
+                    else:
+                        previous_versions_data = previous_versions = base_versions
+
+                    if len(previous_versions_data) == len(new_versions):
                         all_serialized_data = [version.serialized_data for version in new_versions]
-                        previous_versions_sorted = sorted(previous_versions)
-                        if previous_versions_sorted == sorted(all_serialized_data):
+                        if sorted(previous_versions_data) == sorted(all_serialized_data):
                             save_revision = False
+                    # assert 0
                     # Create list of changes in new revision
                     if save_revision:
                         for i, version in enumerate(new_versions):
                             object_key = "%s-%s" % (version.content_type_id, version.object_id,)
-                            # object_key = "%s-%s" % (version.content_type_id, _values["pk"],)
                             updated_data = {}
+                            for p, prev_updates, prev_obj_id, prev_cont_id in previous_versions:
+                                if (version.object_id, version.content_type_id) == (prev_obj_id, prev_cont_id):
+                                    if prev_updates:
+                                        updated_data = simplejson.loads(prev_updates)
+                                    break
+
                             if changes.has_key(object_key):
                                 if isinstance(changes[object_key], (list, tuple)):
                                     curr_data = simplejson.loads(version.serialized_data)[0]
                                     found = False
-                                    for prev in previous_versions:
+                                    # for prev in previous_versions:
+                                    for prev in base_versions:
                                         _values = simplejson.loads(prev)[0]
                                         if curr_data["pk"] == _values["pk"] and curr_data["model"] \
                                             == _values["model"]:
@@ -454,7 +481,11 @@ class RevisionManager(object):
                                             break
 
                                     for fieldname in changes[object_key]:
-                                        updated_data[fieldname] = {"new" : version.field_dict[fieldname], \
+                                        if updated_data.has_key(fieldname):
+                                            updated_data[fieldname]["new"] = version.field_dict[fieldname]
+                                            print fieldname, version.field_dict[fieldname]
+                                        else:
+                                            updated_data[fieldname] = {"new" : version.field_dict[fieldname], \
                                             "old" : _values["fields"][fieldname]}
                             if updated_data:
                                 version.updated_data = simplejson.dumps(updated_data)
@@ -462,7 +493,15 @@ class RevisionManager(object):
             # Only save if we're always saving, or have changes.
             if save_revision:
                 # Save a new revision.
-                rev_type = REVISION_INITIAL if not latest_revision else REVISION_NEW
+                if latest_revision or current_revision:
+                    if current_revision:
+                        old_rev = Revision.objects.get(pk=current_revision)
+                        old_rev.type = REVISION_PREVIOUS
+                        old_rev.save()
+                    rev_type = REVISION_CURRENT
+                else:
+                    # for createinitialrevisions
+                    rev_type = REVISION_ACCEPT
                 revision = Revision.objects.create(manager_slug=self._manager_slug, user=user, 
                     comment=comment, type=rev_type)
                 # Save version models.
