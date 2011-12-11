@@ -226,13 +226,22 @@ class Version(models.Model):
         """
         Get unserialized list of object updated data
         """
+        def get_choices_title(choices, value):
+            for item in choices:
+                if int(value) == item[0]:
+                    return item[1]
+            return ""
+
         if not hasattr(self, "_updated_data_cache"):
             result = []
             if self.updated_data:
                 values = simplejson.loads(self.updated_data)
                 for key in values.keys():
-                    title = self.object._meta.get_field_by_name(key)[0].verbose_name
-                    result.append({"title" : title, "key" : key, "value" : values[key]})
+                    field = self.object._meta.get_field_by_name(key)[0]
+                    if field.choices:
+                        values[key]["old"] = get_choices_title(field.choices, values[key]["old"])
+                        values[key]["new"] = get_choices_title(field.choices, values[key]["new"])
+                    result.append({"title" : field.verbose_name, "key" : key, "value" : values[key]})
             setattr(self, "_updated_data_cache", result)
         return getattr(self, "_updated_data_cache")
 
