@@ -167,7 +167,8 @@ class RevisionContextManager(local):
                     # Save the revision data.
                     for manager, manager_context in self._objects.iteritems():
                         manager.save_revision(manager_context, user=self._user, comment=self._comment, 
-                            meta=self._meta, ignore_duplicates=self._ignore_duplicates, changes=self._changes)
+                            meta=self._meta, ignore_duplicates=self._ignore_duplicates, 
+                            changes=self._changes, mainobject=self._mainobject)
             finally:
                 self.clear()
 
@@ -414,7 +415,7 @@ class RevisionManager(object):
             revision__manager_slug = self._manager_slug,
         ).select_related("revision")
         
-    def save_revision(self, objects, ignore_duplicates=False, user=None, comment="", meta=(), changes={}):
+    def save_revision(self, objects, ignore_duplicates=True, user=None, mainobject=None, comment="", meta=(), changes={}):
         """Saves a new revision."""
         # Adapt the objects to a dict.
         if isinstance(objects, (list, tuple)):
@@ -434,76 +435,129 @@ class RevisionManager(object):
             new_versions = [Version(**version_data) for obj, version_data in objects.iteritems()]
             # Check if there's some change in all the revision's objects.
             save_revision = True
-            if ignore_duplicates:
-                # Find the latest revision amongst the latest previous version of each object.
-                subqueries = [Q(object_id=version.object_id, content_type=version.content_type) for version in new_versions]
-                subqueries = reduce(operator.or_, subqueries)
-                latest_revision = self._get_versions().filter(subqueries, revision__type=REVISION_ACCEPT)\
-                    .aggregate(Max("revision"))["revision__max"]
+
+            # Always save only updates!!!
+            # if ignore_duplicates:
+            # Find the latest revision amongst the latest previous version of each object.
+            subqueries = [Q(object_id=version.object_id, content_type=version.content_type) for version in new_versions]
+            subqueries = reduce(operator.or_, subqueries)
+            accepted_revision = self._get_versions().filter(subqueries, revision__type=REVISION_ACCEPT)\
+                .aggregate(Max("revision"))["revision__max"]
+
+            # If we have a latest revision, compare it to the current revision.
+            if accepted_revision is not None:
                 current_revision = self._get_versions().filter(subqueries, revision__type=REVISION_CURRENT)\
                     .aggregate(Max("revision"))["revision__max"]
-                # If we have a latest revision, compare it to the current revision.
-                if latest_revision is not None:
-                    base_versions = self._get_versions().filter(revision=latest_revision).values_list("serialized_data", flat=True)
-                    if current_revision != latest_revision:
-                        previous_versions = self._get_versions().filter(revision=current_revision)\
-                            .values_list("serialized_data", "updated_data", "object_id", "content_type")
-                        previous_versions_data = [x[0] for x in previous_versions]
-                    else:
-                        previous_versions_data = previous_versions = base_versions
+                
+                # Set needed revision ID for compare changes
+                # compare_revision = current_revision or accepted_revision
 
-                    if len(previous_versions_data) == len(new_versions):
-                        all_serialized_data = [version.serialized_data for version in new_versions]
-                        if sorted(previous_versions_data) == sorted(all_serialized_data):
-                            save_revision = False
-                    # assert 0
-                    # Create list of changes in new revision
-                    if save_revision:
-                        for i, version in enumerate(new_versions):
-                            object_key = "%s-%s" % (version.content_type_id, version.object_id,)
-                            updated_data = {}
-                            for p, prev_updates, prev_obj_id, prev_cont_id in previous_versions:
-                                if (version.object_id, version.content_type_id) == (prev_obj_id, prev_cont_id):
-                                    if prev_updates:
-                                        updated_data = simplejson.loads(prev_updates)
+                # previous_versions = self._get_versions().filter(revision=compare_revision).values_list("serialized_data", flat=True)
+                base_versions = self._get_versions().filter(revision=accepted_revision).values_list("serialized_data", flat=True)
+                previous_versions = base_versions
+                # '''
+                if current_revision: # != latest_revision:
+                    previous_versions = self._get_versions().filter(revision=current_revision)\
+                        .values_list("serialized_data", flat=True)#, "updated_data", "object_id", "content_type")
+                    # previous_versions_data = [x[0] for x in previous_versions]
+                # else:
+                    # previous_versions_data = 
+                # '''
+
+                if len(previous_versions) == len(new_versions):
+                    all_serialized_data = [version.serialized_data for version in new_versions]
+                    if sorted(previous_versions) == sorted(all_serialized_data):
+                        save_revision = False
+                
+                # Create list of changes in new revision
+                if save_revision or changes:
+                    save_revision = True
+                    # Get last revision object for compare changes
+                    _revision = Revision.objects.get(pk=(current_revision or accepted_revision))
+                    updates = simplejson.loads(_revision.changes or "{}")
+                    
+                    for version in new_versions:
+                        object_key = "%s-%s" % (version.content_type_id, version.object_id,)
+                        if not changes.has_key(object_key):
+                            continue
+
+                        if isinstance(changes[object_key], (list, tuple)):
+                            curr_data = simplejson.loads(version.serialized_data)[0]
+                            for prev in base_versions:
+                                _values = simplejson.loads(prev)[0]
+                                if curr_data["pk"] == _values["pk"] and curr_data["model"] \
+                                    == _values["model"]:
                                     break
 
-                            if changes.has_key(object_key):
-                                if isinstance(changes[object_key], (list, tuple)):
-                                    curr_data = simplejson.loads(version.serialized_data)[0]
-                                    found = False
-                                    # for prev in previous_versions:
-                                    for prev in base_versions:
-                                        _values = simplejson.loads(prev)[0]
-                                        if curr_data["pk"] == _values["pk"] and curr_data["model"] \
-                                            == _values["model"]:
-                                            found = True
-                                            break
+                            for _item in changes[object_key]:
+                                if isinstance(_item, dict):
+                                    fieldname, fieldvalue = _item["key"], _item["value"]
+                                    version.field_dict[fieldname] = _item["int_value"]
+                                else:
+                                    fieldname, fieldvalue = _item, version.field_dict[_item]
 
-                                    for fieldname in changes[object_key]:
-                                        if updated_data.has_key(fieldname):
-                                            updated_data[fieldname]["new"] = version.field_dict[fieldname]
-                                            print fieldname, version.field_dict[fieldname]
-                                        else:
-                                            updated_data[fieldname] = {"new" : version.field_dict[fieldname], \
-                                            "old" : _values["fields"][fieldname]}
-                            if updated_data:
-                                version.updated_data = simplejson.dumps(updated_data)
+                                if not updates.has_key(object_key):
+                                    updates[object_key] = {}
+
+                                if not updates[object_key].has_key("fields"):
+                                    updates[object_key]["fields"] = {}
+
+                                if not updates[object_key]["fields"].has_key(fieldname):
+                                    updates[object_key]["fields"][fieldname] = {"new" : fieldvalue, \
+                                    "old" : _values["fields"][fieldname]}
+                                else:
+                                    if (isinstance(_item, dict) and sorted(_item["int_value"]) \
+                                        == sorted(updates[object_key]["fields"][fieldname]["old"])) \
+                                        or fieldvalue == updates[object_key]["fields"][fieldname]["old"]:
+                                        del updates[object_key]["fields"][fieldname]
+                                        if not updates[object_key]["fields"]:
+                                            del updates[object_key]["fields"]
+                                            if not updates[object_key]:
+                                                del updates[object_key]
+                                    else:
+                                        updates[object_key]["fields"][fieldname]["new"] = fieldvalue
+                        
+                        elif isinstance(changes[object_key], dict):
+                            if changes[object_key]["type"] == "add":
+                                # Add new object
+                                if updates.has_key(object_key):
+                                    if updates[object_key]["type"] == "delete":
+                                        del updates[object_key]
+                                    else:
+                                        updates[object_key]["fields"] = changes[object_key]["fields"]
+                                else:
+                                    updates[object_key] = changes[object_key]
+                            
+                            elif changes[object_key]["type"] == "delete":
+                                # Delete object
+                                if updates.has_key(object_key):
+                                    if updates[object_key]["type"] == "add":
+                                        del updates[object_key]
+                                else:
+                                    updates[object_key] = changes[object_key]
+                    
+                    updates = simplejson.dumps(updates)
 
             # Only save if we're always saving, or have changes.
             if save_revision:
                 # Save a new revision.
-                if latest_revision or current_revision:
+                if current_revision or accepted_revision:
                     if current_revision:
-                        old_rev = Revision.objects.get(pk=current_revision)
-                        old_rev.type = REVISION_PREVIOUS
-                        old_rev.save()
+                        # old_rev = Revision.objects.get(pk=current_revision)
+                        _revision.type = REVISION_PREVIOUS
+                        _revision.save()
                     rev_type = REVISION_CURRENT
+                    object_repr = unicode(mainobject)
+                    content_type = ContentType.objects.get_for_model(mainobject)
                 else:
                     # for createinitialrevisions
                     rev_type = REVISION_ACCEPT
+                    updates = ""
+                    object_repr = content_type = None
+
                 revision = Revision.objects.create(manager_slug=self._manager_slug, user=user, 
-                    comment=comment, type=rev_type)
+                    comment=comment, type=rev_type, object_repr=object_repr,
+                    content_type=content_type, changes=updates)
                 # Save version models.
                 for version in new_versions:
                     version.revision = revision

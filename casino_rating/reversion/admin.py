@@ -2,6 +2,7 @@
 
 from django import template
 from django.db import models, transaction
+from django.db.models import ManyToManyField
 from django.conf.urls.defaults import patterns, url
 from django.contrib import admin
 from django.contrib.admin import helpers, options
@@ -53,7 +54,6 @@ class VersionAdmin(admin.ModelAdmin):
         contenttype_id = ContentType.objects.get_for_model(model if model else obj).id
         return "%s-%s" % (contenttype_id, instance_id,)
 
-    
     def _autoregister(self, model, follow=None):
         """Registers a model with reversion, if required."""
         if not self.revision_manager.is_registered(model):
@@ -115,20 +115,30 @@ class VersionAdmin(admin.ModelAdmin):
         """
         changes = {}
         if form.changed_data:
-            changes[self._model_key(form.instance, form._meta.model)] = form.changed_data
+            key = self._model_key(form.instance, form._meta.model)
+            changes[key] = []
+            for f in form.changed_data:
+                field = form._meta.model._meta.get_field_by_name(f)[0]
+                if isinstance(field, ManyToManyField):
+                    value = {"key" : f, "int_value" : getattr(form.instance, f).all().values_list("id", flat=True)}
+                    value["value"] = [unicode(x) for x in value["int_value"]]
+                else:
+                    value = f
+                changes[key].append(value) 
 
         if formsets:
             for formset in formsets:
                 for added_object in formset.new_objects:
-                    changes[self._model_key(added_object)] = "add"
-                    # changes["formset"]["add"].append({'object': force_unicode(added_object),
-                        # 'name': force_unicode(added_object._meta.verbose_name)})
+                    changes[self._model_key(added_object)] = {"type" : "add", \
+                        "fields" : model_to_dict(added_object)}
 
                 for changed_object, changed_fields in formset.changed_objects:
                     changes[self._model_key(changed_object)] = changed_fields
                 
-                for deleted_form in formset.deleted_forms:
-                    changes[self._model_key(deleted_form.initial["id"], deleted_form.instance)] = "delete"
+                for del_form in formset.deleted_forms:
+                    changes[self._model_key(del_form.initial["id"], del_form.instance)] = {"type" : "delete", \
+                        "fields" : del_form.initial, "title" : "%s %s" % (del_form.instance._meta.app_label, \
+                        unicode(del_form.instance))}
         
         revision_context_manager.set_changes(changes)
         revision_context_manager.set_mainobject(form.instance)
@@ -435,13 +445,13 @@ class VersionInline(admin.StackedInline):
 
 
 class RevisionAdmin(admin.ModelAdmin):
-    list_display = ("__unicode__", "date_created", "user", "comment", "type")
+    list_display = ("__unicode__", "content_type", "object_repr", "date_created", "user", "type")
     list_filter = ("type",)
     inlines = [VersionInline]
 
     def queryset(self, request):
         """
-        Get extra queryset. Group records by version_group field
+        Get extra queryset. Filter records by type
         """
         qs = super(RevisionAdmin, self).queryset(request)
         qs = qs.filter(type=REVISION_CURRENT)

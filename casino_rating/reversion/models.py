@@ -42,12 +42,86 @@ REVISION_CURRENT = 5
 
 class Revision(models.Model):
     """A group of related object versions."""
+    content_type = models.ForeignKey(ContentType, help_text="Content type of the model under version control.", null=True)
+    object_repr = models.TextField(help_text="A string representation of the object.", null=True)
+    changes = models.TextField(help_text="Revision changes")
     manager_slug = models.CharField(max_length=200, db_index=True, default="default")
     date_created = models.DateTimeField(auto_now_add=True, help_text="The date and time this revision was created.")
     user = models.ForeignKey(User, blank=True, null=True, help_text="The user who created this revision.")
     comment = models.TextField(blank=True, help_text="A text comment on this revision.")
     type = models.PositiveSmallIntegerField(choices=REVISION_TYPE_CHOICES, db_index=True, default=1)
-    
+
+    def get_changes(self):
+        """
+        Get list of revision changes
+        """
+        if not self.changes:
+            return None
+
+        def get_choices_title(choices, value):
+            for item in choices:
+                if int(value) == item[0]:
+                    return item[1]
+            return ""
+        
+        changes = simplejson.loads(self.changes)
+        _cont_types = {}
+        result = []
+        for key in changes.keys():
+            item = {}
+            content_type_id, obj_id = key.split("-")
+            if not _cont_types.has_key(content_type_id):
+                _cont_types[content_type_id] = ContentType.objects.get_for_id(content_type_id).model_class()
+            
+            if changes[key].get("type", None) == "delete":
+                item = changes[key]
+            else:
+                obj = _cont_types[content_type_id].objects.get(pk=obj_id)
+                item = {"title" : "%s %s" % (obj._meta.verbose_name, unicode(obj)), "type" : None}
+                if changes[key].has_key("type"):
+                    item["type"] = changes[key]["type"]
+
+                f = changes[key]["fields"]
+                fields = []
+                for fkey in f.keys():
+                    if "id" == fkey:
+                        continue
+                    
+                    field = obj._meta.get_field_by_name(fkey)[0]
+                    values = {"title" : field.verbose_name}
+                    if item["type"]:
+                        f[fkey] = {"old" : None,  "new" : f[fkey]}
+
+                    values.update({"old" : f[fkey]["old"], "new" : f[fkey]["new"]})
+                    
+                    if field.choices:
+                        if f[fkey]["old"] is not None:
+                            values["old"] = get_choices_title(field.choices, f[fkey]["old"])
+                        else:
+                            values["old"] = "---"
+                        values["new"] = get_choices_title(field.choices, f[fkey]["new"])
+                    elif isinstance(field, models.ForeignKey):
+                        if item["type"]:
+                            continue
+                        values["old"] = ""
+                        try:
+                            values["new"] = getattr(obj, field.name)
+                        except Exception, e:
+                            print e
+                    elif isinstance(field, models.ManyToManyField):
+                        values["new"] = getattr(obj, field.name).filter(pk__in=values["new"])
+                        values["old"] = getattr(obj, field.name).filter(pk__in=values["old"])
+                        values["manytomany"] = True
+
+                    fields.append(values)
+                item["fields"] = fields
+
+            result.append(item)
+        
+        # print result
+        return result
+
+
     def revert(self, delete=False):
         """Reverts all objects in this revision."""
         version_set = self.version_set.all()
@@ -203,7 +277,7 @@ class VersionManager(models.Manager):
         """
         from reversion.revisions import default_revision_manager
         return list(default_revision_manager.get_deleted(model_class).order_by("pk"))
-            
+
 
 class Version(models.Model):
     """A saved version of a database model."""
@@ -233,15 +307,28 @@ class Version(models.Model):
             return ""
 
         if not hasattr(self, "_updated_data_cache"):
-            result = []
+            result = {"list" : [], "changes" : False}
             if self.updated_data:
                 values = simplejson.loads(self.updated_data)
-                for key in values.keys():
-                    field = self.object._meta.get_field_by_name(key)[0]
-                    if field.choices:
-                        values[key]["old"] = get_choices_title(field.choices, values[key]["old"])
-                        values[key]["new"] = get_choices_title(field.choices, values[key]["new"])
-                    result.append({"title" : field.verbose_name, "key" : key, "value" : values[key]})
+                if values in ("add", "delete",):
+                    result = {"status" : values}
+                    result["changes"] = True
+                else:
+                    for key in values.keys():
+                        if "_type" == key:
+                            result["status"] = values[key]
+                            continue
+
+                        field = self.object._meta.get_field_by_name(key)[0]
+                        if field.choices:
+                            if values[key]["old"] is not None:
+                                values[key]["old"] = get_choices_title(field.choices, values[key]["old"])
+                            else:
+                                values[key]["old"] = "---"
+                            values[key]["new"] = get_choices_title(field.choices, values[key]["new"])
+                        result["list"].append({"title" : field.verbose_name, "key" : key, 
+                            "value" : values[key]})
+                    result["changes"] = True
             setattr(self, "_updated_data_cache", result)
         return getattr(self, "_updated_data_cache")
 

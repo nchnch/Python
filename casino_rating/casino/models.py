@@ -161,7 +161,7 @@ class CasinoInfo(models.Model):
         """
         Get name of the entry
         """
-        return self.name
+        return "%s [%s]" % (self.name, unicode(self.lang),)
 
     class Meta:
         verbose_name = _(u"Языкозависимые поля казино")

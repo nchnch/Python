@@ -5,22 +5,31 @@
 {% block content %}
 <div id="content-main">
     <ul>
-    {% for item in original.version_set.all %}
-        {% if item.object_changes %}
-        <li>
-        	<b>{{ item.content_type }} {{ item.object_repr }}</b><br />
-        	<table>
-        		<tr><th>Параметр</th><th>До изменения</th><th>После изменения</th></tr>
-        		{% for field in item.object_changes %}
-        		<tr>
-        			<td>{{ field.title }}</td>
-        			<td>{{ field.value.old }}</td>
-        			<td>{{ field.value.new }}</td>
-        		</tr>
-        		{% endfor %}
-        	</table>
+    {% for item in original.get_changes %}
+        <li style="margin:0 0 20px 0">
+            <div style="margin:0 0 10px 0;"><b>{{ item.title }}</b></div>
+            {% if item.type %}
+                <p>{% if item.type == "add" %}Объект добавлен
+                {% else %}Объект удален{% endif %}</p>
+            {% endif %}
+            {% if item.fields %}
+            <table style="margin:0 0 0 20px;">
+                <tr><th>Параметр</th><th>До изменения</th><th>После изменения</th></tr>
+                {% for field in item.fields %}
+                <tr>
+                    <td>{{ field.title }}</td>
+                    {% if field.manytomany %}
+                    <td>{% for rel in field.old %}{{rel}}<br />{% endfor %}</td>
+                    <td>{% for rel in field.new %}{{rel}}<br />{% endfor %}</td>
+                    {% else %}
+                    <td>{{ field.old|default_if_none:"" }}</td>
+                    <td>{{ field.new }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
         </li>
-        {% endif %}
     {% endfor %}
     </ul>
 </div>

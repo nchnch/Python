@@ -61,7 +61,7 @@ class CasinoAdmin(VersionAdmin): #VersionModelAdmin, #ModifyModelAdmin
     list_display = ("morelinks", "name", "domain", "relation", "status", "enabled", )
     list_display_links = ("name",)
     list_filter = ("developers", "enabled", "status", "relation", )
-    ordering = ("enabled", )
+    ordering = ("id", "enabled", )
     search_fields = ("name", "domain", )
     save_on_top = True
     inlines_formsets_pages = (
