@@ -1,0 +1,81 @@
+@charset "UTF-8";
+@media screen, projection
+{
+  body { background: #BCB8C9 none; padding: 0px 0;  }
+  .page_margins { margin: 0 auto; }
+  .page_margins { width: auto;  min-width: 740px; max-width: 90em; background: #fff; }
+  .page { padding: 10px 15px 10px 10px; min-width: 900px;}
+  #header { padding: 0px; height: 148px; color: #000; background:#BCB8C9 ; }
+  #topnav { color: #aaa; background: transparent; }
+  #main { margin: 0;  }
+  #teaser {  padding: 0; margin:0;background:#BCB8C9; border-top:#CCDAE3 1px solid;border-bottom:#CCDAE3 1px solid; border-right:none;border-left:none }
+  #footer {font-size:xx-small; padding: 10px 20px; line-height: 10px; color:gray; background: url('../../images/footer_back.jpg') repeat-x #f9f9f9; border:1px #9294a0 solid; height:62px }
+  .params{background: url('../../images/params_back.jpg') repeat-x; padding: 0px 20px 0px 10px; text-align:center;border:none;}
+  #main_menu{border-bottom:#C9DAE3 1px solid;background: white url('../../images/menu_back.jpg') repeat; background-position:center;  padding:10px 10px;}
+  #main_menu a{color:black;}
+  .left_menu{color:black;background: #EAEFF2;  height:auto; padding:10px 10px;font-size:90%;border-bottom:#C9DAE3 solid 1px; }
+  #col1 { float: left; width: 216px; background-color: #EAEFF2;border-right: #C9DAE3 solid 1px; }
+  #col2 { display:none}
+  #col3 { width: auto; margin: 0 0 0 216px;}
+  #col1_content { padding: 0 ; background-color: #EAEFF2}
+  #col3_content { padding: 10px 30px 0 30px; }
+  .page_margins {
+    border: 0 none;
+  }
+  .page {
+    border: 0 none;
+    margin: 0 0 0 0px; padding: 0px 0px 0px 0px;
+  }
+  #border-top {
+    overflow:hidden;
+    width: auto;
+    height: 20px;
+    font-size:0;
+    margin-bottom: -15px;
+    background-image:  url(../../images/gfxborder/border_top.gif);
+    background-repeat:repeat-x;
+    background-position:top left;
+  }
+  #border-bottom {
+    overflow:hidden;
+    width: auto;
+    height: 20px;
+    margin-top: -15px;
+    font-size:0;
+    background-image:  url(../../images/gfxborder/border_bottom.gif);
+    background-repeat:repeat-x;
+    background-position:bottom left;
+  }
+  #edge-tl {
+    float:left;
+    width: 20px;
+    height: 20px;
+    font-size:0;
+    background-image:  url(../../images/gfxborder/corner_tl.gif);
+    background-position: top left;
+  }
+  #edge-tr {
+    position:relative; 
+    float:right;
+    width: 20px;
+    height: 20px;
+    font-size:0;
+    background-image:  url(../../images/gfxborder/corner_tr.gif);
+    background-position: top right;
+  }
+  #edge-bl {
+    float:left;
+    width: 20px;
+    height: 20px;
+    background-image:  url(../../images/gfxborder/corner_bl.gif);
+    background-position: bottom left;
+  }
+  #edge-br {
+    position:relative;
+    float:right;
+    width: 20px;
+    height: 20px;
+    background-image:  url(../../images/gfxborder/corner_br.gif);
+    background-position: bottom right;
+  }
+}

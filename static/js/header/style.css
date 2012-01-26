@@ -1,0 +1,203 @@
+html, body, div {
+    margin: 0;
+    padding: 0;
+}
+
+.ah {
+    width: auto;
+    height: 150px;
+    background: #eee;
+    position: relative;
+    font: 12px sans-serif;
+    border-bottom: 3px double #ccc;
+}
+
+.ah-entries {
+    position: relative;
+    height: 130px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.ah-entry {
+    position: relative;
+    height: 130px;
+    width: 170px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px #333;
+    display: inline-block;
+    text-align: left;
+    margin: 0 5px;
+    *float: left;
+}
+
+.ah-entry-a {
+    border-radius: 3px;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 130px;
+    width: 170px;
+    background: rgba(0,0,0,0.3);
+    text-align: center;
+    opacity: 0;
+}
+
+.ah-entry-a:hover {
+    opacity: 1;
+}
+
+.ah-entry-a span {
+    display: inline-block;
+    color: #ccc;
+    font-size: 11px;
+    margin-top: 55px;
+    padding: 3px 5px;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 3px #111;
+    border-radius: 6px;
+}
+
+.ah-popup {
+    left: -9999px;
+    position: absolute;
+    top: 130px;
+    box-shadow: 0 1px 3px #333;
+    border-radius: 2px;
+    opacity: 0.75;
+  -webkit-transition: top 0.3s ease-out;  /* Saf3.2+, Chrome */
+     -moz-transition: top 0.3s ease-out;  /* FF4+ */
+      -ms-transition: top 0.3s ease-out;  /* IE10? */
+       -o-transition: top 0.3s ease-out;  /* Opera 10.5+ */
+          transition: top 0.3s ease-out;
+}
+
+.ah-entry:hover .ah-popup  {
+    left: 0;
+    top: 170px;
+}
+
+.ah-helper {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 170px;
+    width: 170px;
+    background: transparent;
+    z-index: 1;
+}
+
+.ah-entry:hover .ah-helper {
+    display: block
+}
+
+.ah-popup-arr {
+    position:   absolute;
+    top:        -4px;
+    left:     74px;
+    width: 8px;
+    height: 8px;
+    overflow: hidden;
+    background: #eee;
+    box-shadow: 0 0 2px #333;
+             -moz-transform: rotate(45deg);  /* FF3.5+ */
+       -o-transform: rotate(45deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(45deg);  /* Saf3.1+, Chrome */
+      -ms-transform: rotate(45deg);  /* IE9 */
+          transform: rotate(45deg);     
+}
+
+.ah-popup-text {
+    font-size: 11px;
+    width: 160px;
+    background: #fff;
+    padding: 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    border-radius: 2px;
+    background-image: -webkit-linear-gradient(top, #eee, #c7c7c7); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient(top, #eee, #c7c7c7); /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, #eee, #c7c7c7); /* IE10 */
+    background-image:      -o-linear-gradient(top, #eee, #c7c7c7); /* Opera 11.10+ */
+    background-image:         linear-gradient(top, #eee, #c7c7c7);
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.ah-popup-title {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.ah-paginator {
+   top: 142px;
+   position: absolute;
+   /*left: 50%;*/
+   /*margin-left: -100px;*/
+}
+
+.ah-paginator-buttons {
+    position: relative;
+    z-index: 4;
+    white-space:nowrap;
+    border-radius: 3px;
+    background: #777;
+    padding: 1px;
+    padding-left: 0;
+    font-size: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px #000;
+}
+
+.ah-paginator-buttons a {
+    display: block;
+    float: left;
+    width: 20px;
+    text-align: center;
+    line-height: 18px;
+    background: #444;
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 1px;
+    background-color: #555;    
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#777777), to(#555555)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #777777, #555555); /* Chrome 10+, Saf5.1+, iOS 5+ */
+    background-image:    -moz-linear-gradient(top, #777777, #555555); /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, #777777, #555555); /* IE10 */
+    background-image:      -o-linear-gradient(top, #777777, #555555); /* Opera 11.10+ */
+    background-image:         linear-gradient(top, #777777, #555555);
+    text-shadow: 1px 1px 0 #222;
+}
+
+.ah-paginator-buttons a:hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#444444)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #666666, #444444); /* Chrome 10+, Saf5.1+, iOS 5+ */
+    background-image:    -moz-linear-gradient(top, #666666, #444444); /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, #666666, #444444); /* IE10 */
+    background-image:      -o-linear-gradient(top, #666666, #444444); /* Opera 11.10+ */
+    background-image:         linear-gradient(top, #666666, #444444);
+}
+
+.ah-paginator-buttons a.active {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#555555)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #000000, #555555); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #000000, #555555); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, #000000, #555555); /* IE10 */
+  background-image:      -o-linear-gradient(top, #000000, #555555); /* Opera 11.10+ */
+  background-image:         linear-gradient(top, #000000, #555555);
+}
+
+.ah-paginator-buttons a:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.ah-paginator-buttons a:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}

@@ -39,7 +39,7 @@ class VersionAdmin(admin.ModelAdmin):
     ignore_duplicate_revisions = False
     # If True, then the default ordering of object_history and recover lists will be reversed.
     history_latest_first = False
-    # List of changed field and objects for save it`s into revision updated_data
+    # List of changed fields and objects for save it`s into revision updated_data
     # _changes = None
 
     def _model_key(self, obj, model=None):
@@ -457,5 +457,16 @@ class RevisionAdmin(admin.ModelAdmin):
         qs = qs.filter(type=REVISION_CURRENT)
         return qs
 
+    def get_object(self, request, object_id):
+        """
+        Returns an instance matching the primary key provided. ``None``  is
+        returned if no match is found (or the object_id failed validation
+        against the primary key field).
+        """
+        obj = super(RevisionAdmin, self).get_object(request, object_id)
+        if obj is None:
+            model = self.model
+            # model.objects.get()
+        return obj
 
 admin.site.register(Revision, RevisionAdmin)

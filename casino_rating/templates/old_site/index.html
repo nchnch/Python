@@ -1,0 +1,109 @@
+{% extends 'default.html' %}
+
+
+{% block content %}
+<center>
+<table border='0' width='100%'>
+    <tr>
+        <td width="250px">
+            Всего казино по запросу:<strong> {{ casino_list.paginator.count }}</strong><br>
+            Максимальная возможная оценка: <strong>439.6</strong>
+        </td>
+        <td align='center'>
+            {% for page in casino_list.paginator.page_range %}
+            {% if page == current_page %}
+            <span class='shadow-link'>{{ page }}</span> 
+            {% else %}
+            <a href='?page={{ page }}{{ add_page_url }}' class='shadow-link'>{{ page }}</a> 
+            {% endif %}
+            &nbsp;
+            {% endfor %}
+        </td>
+        <td align='center' width="150px">
+            <form method='get' >Сайтов на странице: 
+            <select class='showBy' name='per_page'>
+                {% for count in PER_PAGE_LIST %}
+                <option{% if count == per_page %} selected='selected'{% endif %}>{{ count }}</option>
+                {% endfor %}
+            </select>
+            <input type='submit' value='>>'>
+            </form>
+        </td>
+    </tr>
+</table>
+<br />
+<table class="rating_table" border="0" cellspacing="0">
+    <thead>
+        <tr>
+            <td width="250px"><strong>Логотип</strong></td>
+            <td><strong>Название/Описание</strong></td>
+            <td width="100px"><strong>Рейтинг</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2"></td>
+            <td align="center">
+                <input id="select_button" type="button" value="Сравнить" onclick="javascript: location.href = '/compare.jsp';" style="margin-top:15px" />
+            </td>
+        </tr>
+        {% for item in casino_list.object_list %}    
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid={{ item.id }}'>
+                    {% if item.logo %}
+                    <img height='190px' width='250px' alt='Скриншот казино {{ item.name }}' src='{{ item.logo.url }}'/>
+                    {% endif %}
+                </a>
+            </td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid={{ item.id }}'><strong>{{ item.name }}</strong><br />
+                <noindex><p>{{ item.description|safe }}</p></noindex></a><br />
+                <center name='nocopydiv'>
+                    <a class='casino' href='/external.jsp?rc={{ item.id }}' onClick="recLinkExt('Evrogrand');extCl(this.href);window.open(this.href);return false;">
+                    <strong>{{ item.get_url }}</strong></a> | 
+                    <a href='/casino_info.jsp?cid={{ item.id }}'><strong>Обзор</strong></a>
+                </center>
+            </td>
+            <td class='no-border padding' valign="middle" align="center">
+                <a class='rating' href='/casino_info.jsp?cid={{ item.id }}'>334.37</a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td class="no-border" colspan="2"></td>
+            <td class="no-border" align="center">
+                <input id="select_button" type="button" value="Сравнить" onclick="javascript: location.href = '/compare.jsp?collaps=0&param_id=&param_id=&param_id=&onFilter=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C';" style="margin-top:15p;" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table border='0' width='90%'>
+    <tr>
+        <td width="250px">
+            Всего казино в базе:<strong> {{ casino_list.paginator.count }}</strong>
+        </td>
+        <td align='center'>
+            {% for page in casino_list.paginator.page_range %}
+            {% if page == current_page %}
+            <span class='shadow-link'>{{ page }}</span> 
+            {% else %}
+            <a href='?page={{ page }}{{ add_page_url }}' class='shadow-link'>{{ page }}</a> 
+            {% endif %}
+            &nbsp;
+            {% endfor %}
+        </td>
+        <td align='center' width="150px">
+            <form method='get' >Сайтов на странице: 
+            <select class='showBy' name='per_page'>
+                {% for count in PER_PAGE_LIST %}
+                <option{% if count == per_page %} selected='selected'{% endif %}>{{ count }}</option>
+                {% endfor %}
+            </select>
+            <input type='submit' value='>>'>
+            </form>
+        </td>
+    </tr>
+</table>
+</center>
+{% endblock %}

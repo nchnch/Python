@@ -1,0 +1,128 @@
+img.playImg {
+    cursor: pointer;
+}
+
+div.play, div.go, div.go1, div.inner {
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    font-family: verdana, arial, sans-serif;
+    /* round edges */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    /*
+        behavior: url(/css/border-radius.htc);
+    */
+    border-radius: 10px;
+}
+
+div.play {
+    width: 200px;
+    padding: 5px;
+    margin: 3px;
+    background: #f68428;
+    cursor: pointer;
+}
+
+div.go {
+    width: 200px;
+    padding: 5px;
+    margin: 3px;
+    background: #45F629;
+    cursor: pointer;
+}
+
+div.go1 {
+    width: 80%;
+    padding: 5px;
+    margin: 3px;
+    background: #45F629;
+    cursor: pointer;
+}
+
+div.go_more_games {
+    width: 80%;
+    padding: 5px;
+    margin: 3px;
+    font-weight: bold;
+    text-align: center;
+    font-family: verdana, arial, sans-serif;
+/*
+    background: #45F629;
+*/
+    cursor: pointer;
+}
+
+.startPaging {
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 116.67%;
+    font-weight:bold;
+    text-shadow: 2px 2px 3px gray;
+}
+
+.casinoLink {
+    color: #182E7A;
+    font-size:large;
+}
+
+.emphasize, .endPaging {
+    font-size: x-large;
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+
+.endPaging {
+    color: blue;
+}
+
+#slot-wrap {
+    background-image: url(/images/bg-grad-step1.png);
+    background-repeat: repeat-x;
+    padding: 20px;
+    margin: 0px;
+    color: #333333;
+    background-color: white;
+    min-height:100%;
+}
+
+#slot-header {
+    padding:5px;
+    margin:0px;
+}
+
+p.more {
+    font-size: x-large; text-align: center; font-weight: bold; color: red;
+}
+
+.TABLE {
+    width: 100%;
+}
+
+.casino-name {
+    text-align: center;
+    width: 200px;
+    padding: 5px;
+    margin: 3px;
+}
+
+.page-tag {
+    width: 80%;
+}
+
+div.padding {
+    padding-left: 5px;
+}
+
+div.developerLabel {
+    width: 100%;
+    text-align: left;
+}
+
+div.slot-banner {
+    float: left;
+    padding-left: 5px;
+    min-height:110px;
+    width: 110px;
+}

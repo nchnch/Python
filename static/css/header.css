@@ -1,0 +1,271 @@
+.unselectable {
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    user-select: none;
+    -khtml-user-select: none;
+}
+.jqifade{
+    position: absolute;
+    background-color: #aaaaaa;
+}
+div.jqi{
+    width: 450px;
+    position: absolute;
+    background-color: #ffffff;
+    text-align: left;
+    border: solid 1px #eeeeee;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 7px;
+}
+div.jqi .jqicontainer{
+    font-weight: bold;
+}
+div.jqi .jqiclose{
+    position: absolute;
+    top: 4px; right: -2px;
+    width: 18px;
+    cursor: default;
+    color: #2E6F9E;
+    font-weight: bold;
+}
+div.jqi .jqimessage{
+    padding: 10px;
+    line-height: 20px;
+    color: #2E6F9E;
+}
+div.jqi .jqibuttons{
+    text-align: center;
+    padding: 5px 0 5px 0;
+    border: solid 1px #DAE3EA;
+    background-color: #DAE3EA;
+}
+div.jqi button{
+    padding: 3px 10px;
+    margin: 0 10px;
+    background-color: #E16E08;
+    border: solid 1px #f4f4f4;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+div.jqi button:hover{
+    background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{
+    background-color: #2E6F9E;
+}
+.jqiwarning .jqi .jqibuttons{
+    background-color: #BF5E26;
+}
+#tooltip_d {
+    display:none;
+    background:transparent url(/images/black_arrow.png);
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:black;
+    z-index:2000;
+}
+#tooltip_d2 {
+    display:none;
+    background:transparent url(/images/black_arrow.png);
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:black;
+}
+#params_combo img {
+    border:0;
+    cursor:pointer;
+    margin:0 8px;
+}
+#params_combo2 img {
+    border:0;
+    cursor:pointer;
+    margin:0 8px;
+}
+.TABLE   { display: table }
+.TR   { display: table-row; }
+.TD   { display: table-cell;padding:3px; vertical-align:top;border: #E9EEF2 1px solid;font-family: Arial, Sans-Serif; font-size:100%; line-height:130%; margin-bottom:0.5em; margin-top:0;
+    font-weight:normal;}
+.ac_results {
+    padding: 0px;
+    border: 1px solid WindowFrame;
+    background-color: Window;
+    overflow: hidden;
+}
+
+.ac_results ul {
+    width: 100%;
+    list-style-position: outside;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ac_results iframe {
+    display:none;/*sorry for IE5*/
+    display/**/:block;/*sorry for IE5*/
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+    filter:mask();
+    width:3000px;
+    height:3000px;
+}
+
+.ac_results li {
+    margin: 0px;
+    padding: 2px 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font: menu;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.ac_loading {
+    background : Window url('./indicator.gif') right center no-repeat;
+}
+
+.ac_over {
+    background-color: Highlight;
+    color: HighlightText;
+}
+
+.h2, .h2_center, .h3, .h3_center {
+    font-family: Arial, Sans-Serif;
+    line-height:130%; margin-bottom:0.5em; margin-top:0;
+    font-size: 150%;
+}
+
+.h3_center {
+    text-align: center;
+}
+.h2, .h2_center {
+   font-size: 200%;
+}
+
+.h2_center {
+    text-align: center;
+}
+
+.h1 {
+    display: block; unicode-bidi: embed;
+    font-size: 2em; margin: .67em 0;
+}
+
+.h5 {
+    font-size: .83em; margin: 1.5em 0;
+    font-weight: bolder;
+}
+
+center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p.center {
+    text-align:center;
+}
+
+.extLink {
+    color: #182E7A;
+    font-size:large;
+}
+
+p.correct {
+    color:green;
+}
+
+p.wrong {
+    color:red;
+}
+
+.shadow-link {
+    font-size: 116.67%;
+    font-weight:bold;
+    text-shadow: 2px 2px 3px gray;
+}
+
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.align-left {
+    text-align: left;
+}
+.align-right {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.developer {
+    float:left;padding:5px;
+}
+
+.casino-footer {
+    margin-bottom:10px;width:100%;
+}
+
+.casino-header {
+    margin-top:50px;margin-bottom:10px;
+}
+
+.slotDiv {
+    float:left;padding:10px;text-align:center;
+}
+
+.slot {
+    margin-top:5px;
+}
+p.vote {
+    padding-left:12px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.parameter-value {
+    width:70%;
+}
+
+.return-button {
+    float: right;font-size: medium;
+}
+
+.acc {
+    padding: 10px;
+    display: none;
+}
+
+td.ads {
+    border-right:0; width: 216px;
+}
+
+.all-parameters {
+    color: #C40000;
+}
+
+.acc-form {
+    font-size:80%;
+}
+
+.parameter-description {
+    border-bottom:#C9DAE3 1px solid;
+}
+
+.parameter-group {
+    color:black;
+}

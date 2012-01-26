@@ -1,0 +1,19 @@
+#extlink:focus,
+#extlink:hover,
+#extlink:active { color:#4D87C7; text-decoration:none; }
+
+select.showBy {
+    width: 70%;
+}
+td.no-border {
+    border-bottom: none;
+}
+a.casino {
+    color: #182E7A;
+}
+td.padding {
+    padding-top:10px;
+}
+a.rating {
+    font-size:xx-large;
+}

@@ -1,0 +1,43 @@
+
+body{
+    padding:0px;
+    margin:0px;
+}
+#logo{
+    background: url('../images/logo.jpg') #bbbdc9;
+    height:148px;
+}
+.tablewrapper {
+  width:100%;
+  height:150px;
+  border-top:#A7A8B1 solid thin;
+  border-bottom:#A0A2AB solid thin;
+  position: relative;
+}
+.table {
+  border: 1px solid red;
+  height:100%;
+  width:100%;
+  display: table;
+}
+.row {
+    width:100%;
+    display: table-row;
+}
+.cell {
+  border: 1px solid red;
+  display: table-cell;
+}
+.cell.button {
+  width:250px;
+}
+.cell.empty
+{
+  border: none;
+}
+.cell.rowspanned {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  
+}

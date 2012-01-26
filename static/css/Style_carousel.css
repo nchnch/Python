@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+.carousel {
+	position: relative;
+	height: 180px;
+}
+
+.carousel .carousel_list {
+	border: 2px solid black;
+	float: left;
+	background-color: #777777;
+}
+
+.carousel .carousel_list ul li {
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	float: left;
+	width: 200px;
+	height: 150px;
+}
+
+.carousel .carousel_list {
+	visibility: visible;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	position: relative;
+	z-index: 2;
+	width: inherit;
+}
+
+.carousel .carousel_list ul {
+	position: relative;
+	list-style-type: none;
+	z-index: 1;
+	width: inherit;
+}
+
+.carousel a.prev, .carousel a.next {
+	display: block;
+	float: left;
+	width: 85px;
+	height: 170px;
+	text-decoration: none;
+	background: url("b2.png") left 45px no-repeat;
+}
+
+.carousel a.next {
+	background: url("b1.png") left 45px no-repeat;
+}
+
+.carousel a.next:hover {
+	background-image: url("b1h.png");
+}
+
+.carousel a.prev:hover {
+	background-image: url("b2h.png");
+}
+
+.carousel a:hover, .carousel a:active {
+	border: none;
+	outline: none;
+}

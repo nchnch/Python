@@ -8,14 +8,14 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #Home page url:
-    url(r'^$', 'casino_rating.views.home'),
+    url(r'^', include('old_site.urls')),
 
     #Modules URLs. 
-    url(r'^casino/', include('casino.casino_urls')),
-    url(r'^slots/', include('casino.game_urls')),
+    # url(r'^casino/', include('casino.casino_urls')),
+    # url(r'^slots/', include('casino.game_urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 )

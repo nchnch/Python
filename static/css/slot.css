@@ -1,0 +1,178 @@
+div.play,div.inner {
+	background: url('/img/grid-10.gif') 100% 100%;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+}
+
+div.play {
+	width: 200px;
+	padding: 5px;
+	margin: 3px;
+	background: #f68428;
+	cursor: pointer;
+}
+
+div.slot {
+	width: 100%;
+	padding: 5px;
+	margin: 3px;
+}
+
+iframe.slot {
+    cursor: pointer;
+    margin: 0;
+}
+
+a.go {
+	background: transparent url('/img/oval-green-left.gif') no-repeat top
+		left;
+	display: block;
+	float: left;
+	line-height: 16px;
+	height: 24px;
+	padding-left: 11px;
+	text-decoration: none;
+}
+
+a:link.go,a:visited.go,a:active.go {
+	color: #494949;
+}
+
+a.go span {
+	background: transparent url('/img/oval-green-right.gif') no-repeat top
+		right;
+	display: block;
+	padding: 4px 11px 4px 0;
+}
+
+a.go:hover {
+	background-position: bottom left;
+}
+
+a.go:hover span {
+	background-position: bottom right;
+	color: black;
+}
+
+.buttonwrapper {
+	overflow: hidden;
+	width: 100%;
+}
+
+a.size {
+	background: transparent url('/img/oval-orange-left.gif') no-repeat top left;
+	display: block;
+	float: left;
+	line-height: 16px;
+	height: 24px;
+	padding-left: 11px;
+	text-decoration: none;
+    margin-left: 6px;
+}
+
+a:link.size,a:visited.tf,a:active.size {
+	color: #494949;
+}
+
+a.size span {
+	background: transparent url('/img/oval-orange-right.gif') no-repeat top
+		right;
+	display: block;
+	padding: 4px 11px 4px 0;
+}
+
+a.size:hover {
+	background-position: bottom left;
+}
+
+a.size:hover span {
+	background-position: bottom right;
+	color: black;
+}
+
+a.tf {
+	background: transparent url('/img/oval-orange-left.gif') no-repeat top
+		left;
+	display: block;
+	float: left;
+	line-height: 16px;
+	height: 24px;
+	padding-left: 11px;
+	text-decoration: none;
+}
+
+a:link.tf,a:visited.size,a:active.tf {
+	color: #494949;
+}
+
+a.tf span {
+	background: transparent url('/img/oval-orange-right.gif') no-repeat top
+		right;
+	display: block;
+	padding: 4px 11px 4px 0;
+}
+
+a.tf:hover {
+	background-position: bottom left;
+}
+
+a.tf:hover span {
+	background-position: bottom right;
+	color: black;
+}
+#iwAll {
+    background-repeat: repeat-x; padding: 20px; margin: 0px; color: #333333; background-color: white;
+}
+.size-buttons {
+    float: left; width:50%; margin-top: 17px;
+}
+.scroll-button {
+    float: right;width:50%;
+}
+.scroll-button-label {
+    float: right;width:40%;
+    text-align: right;
+}
+.slot-vote {
+    float:left;padding:10px;
+}
+.button-refer {
+    float:left;padding:5px;
+}
+.casino-button {
+    float:left;padding:10px;
+}
+.visit-button {
+    padding:0px;
+}
+.download-button {
+    padding:10px;
+}
+.complain-button {
+    float:right;padding:10px;
+}
+.same-game-link {
+    color: #182E7A;
+}
+p.button-label {
+    width: 30%;
+}
+
+.TABLE {
+    width: 100%;
+}
+
+#innerDiv {
+    display: none;
+}
+
+.cover {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    z-index:100000;
+    opacity:0.01;
+    border: #004400;
+    filter:alpha(opacity=1); /* For IE8 and earlier */
+}

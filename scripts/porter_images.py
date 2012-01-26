@@ -18,7 +18,7 @@ def main():
     """
     # _casino_logo()
     # _casino_screenshots()
-    _slots_logo()
+    # _slots_logo()
 
 
 def _casino_logo():

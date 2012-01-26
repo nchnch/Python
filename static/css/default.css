@@ -1,0 +1,388 @@
+img {margin:0;border:0;}
+
+a {color: #0186ff;}
+a:active,a:focus {outline: none;}
+a:hover {text-decoration: none;}
+
+h1,h2,h3,.h4,h5,h6 {margin:0;padding:0;}
+
+ul,li,ol,form,dl,dt,dd {list-style:none;padding:0;margin:0;}
+
+.center {text-align:center;margin:0 auto;}
+.left {float:left;}
+.right {float:right;}
+/*p {padding:0 0 15px 0;margin:0;}*/
+
+.clear {clear:both;}
+
+.one {
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow:ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.game {
+    background: url("/img/bg_game.png") no-repeat;
+    height: 186px;
+    padding: 8px 8px 0 7px;
+    position: relative;
+    width: 198px;
+    float: left;
+    margin: 0 8px 8px 0;
+}
+
+.game ul {}
+.game ul li {
+    float: none;
+}
+
+.game ul li.slot-info {
+    overflow: hidden;
+    line-height: 12px;
+}
+
+.game ul li.slot-info .h4 {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: left;
+    width: 120px;
+    float: left;
+}
+.game ul li.slot-info .h4 a {
+    color: #0186ff;
+    font-size: 12px;
+}
+
+.game ul li.slot-info span.type_game {
+    font-size: 10px;
+    color: #6b6b6b;
+    float: left;
+    text-align: left;
+    margin: 0 0 3px 0;
+    width: 115px;
+}
+.game ul li.slot-info a.casino {
+    font-size: 10px;
+    color: #0186ff;
+    float: right;
+    margin: 0 4px 3px 0;
+    width: 75px;
+    text-align: right;
+}
+
+.game ul li.slot-info div.count_rating {
+    color: #BCBCBC;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 15px;
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    width: 70px;
+    text-align: right;
+}
+.game ul li.slot-info div.count_rating div {
+    float: right;
+}
+.game ul li.slot-info div.count_rating a {
+    background: url("/img/ico_4.png") no-repeat;
+    display: block;
+    width: 17px;
+    height: 15px;
+    float: right;
+    position: relative;
+    top: -2px;
+    *top: 4px;
+    margin: 0 0 0 3px;
+    text-align: start;
+    text-decoration: underline;
+    *margin: 0;
+    *padding: 0;
+}
+
+.game ul li.img {
+    position: relative;
+}
+.game ul li.img img {
+    width: 195px;
+    height: 142px;
+    border: 1px solid #656766;
+    border-radius: 4px;
+	margin : 0px;
+}
+
+.game ul li.img:hover ul {
+    display: block;
+}
+
+.game ul li.img ul {
+    background: url("/img/bg_ul_game.png");
+    height: 100%;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    border-radius: 6px;
+    display: none;
+}
+
+.game ul li.img ul li {
+    height: 21px;
+    line-height: 21px;
+}
+.game ul li.img ul li:first-child {
+    background: url("/img/bg_ul_game_li.png") no-repeat center top;
+    margin: 11px 0 0 0;
+}
+
+.game ul li.img ul li a {
+    background: url("/img/bg_ul_game_li.png") no-repeat center bottom;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    height: 21px;
+    display: block;
+    cursor: pointer;
+}
+.game ul li.img ul li a span {
+    display: block;
+    height: 21px;
+}
+
+.game ul li.img ul li a:hover {
+    color: #fff;
+}
+.game ul li.img ul li a:hover span{
+    background: url("/img/bg_ul_game_li_hover.png") repeat-y center;
+}
+
+
+.game ul li.img ul li.money a {
+    color: #ff0000;
+}
+.game ul li.img ul li.money:hover a {
+    color: #fff;
+}
+.game ul li.img ul li.free a {
+    color: #f29706;
+}
+.game ul li.img ul li.free:hover a {
+    color: #fff;
+}
+.game ul li.img ul li.releat a {
+    color: #aeaeae;
+}
+.game ul li.img ul li.releat:hover a {
+    color: #fff;
+}
+
+.game ul li.img ul li.more {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+.game ul li.img ul li.more a {
+    background: url(../img/ico_5.png) no-repeat;
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 2px;
+    right: 3px;
+}
+.game ul li.img ul li.more a.active {
+    background: url(../img/ico_5_.png) no-repeat;
+    display: block;
+    width: 25px;
+    height: 19px;
+    position: relative;
+    right: 0px;
+    top: 0px;
+}
+
+.game ul li.img ul li.more .dropdown {
+    background: #ADADAD;
+    display: none;
+    min-height: 25px;
+    padding: 3px 6px;
+    position: absolute;
+    right: 0;
+    top: 19px;
+    z-index: 10;
+    border-radius: 6px 0 6px 6px;
+    width: 160px
+}
+
+.game ul li.img ul li.more .dropdown ol {
+    text-align: center;
+}
+.game ul li.img ul li.more .dropdown ol li {
+    background: none;
+    border-bottom: 1px dotted #595959;
+    width: auto;
+    height: auto;
+    margin: 0;
+}
+.game ul li.img ul li.more .dropdown ol li:last-child {
+    border: 0;
+}
+.game ul li.img ul li.more .dropdown ol li a {
+    background: none;
+    color: #333333;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    font-weight: normal;
+    top:0;
+}
+.game ul li.img ul li.more .dropdown ol li a:hover {
+    color: #515151;
+}
+
+/*START POPUPs*/
+
+.overlay {
+    background: url("../img/bg_ul_game.png") repeat scroll left top transparent;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+.popups {
+    background: #fff;
+    border: 2px solid #156C06;
+    left: 50%;
+    margin-left: -338px;
+    padding: 10px;
+    position: absolute;
+    top: 85px;
+    width: 655px;
+    z-index: 101;
+    display: none;
+    border-radius: 8px;
+}
+
+.popups a.close {
+    background: url("../img/close.png") no-repeat right 3px;
+    color: #156C06;
+    height: 18px;
+    line-height: 18px;
+    padding-right: 10px;
+    position: absolute;
+    right: 8px;
+    text-decoration: none;
+    top: 3px;
+    width: 55px;
+}
+
+.popups h6.head {
+    font-size: 18px;
+    line-height: 18px;
+    margin-bottom: 10px;
+    color: #626262;
+}
+
+.popups .pwrap {
+    margin: 0 0 15px 0;
+}
+
+.popups .pwrap p {
+    color: #626262;
+    font-size: 12px;
+}
+
+.popups .pwrap .pdevelops {
+    text-align: center;
+}
+.popups .pwrap .pdevelops a {
+    margin: 0 5px 0 0;
+}
+.popups .pwrap .pgames .game {
+    margin: 0 5px 8px 0;
+}
+
+.popups .pwrap .plist {}
+.popups .pwrap .plist label {
+    color: #0086FF;
+    display: inline-block;
+    margin-bottom: 5px;
+    padding-left: 18px;
+    position: relative;
+    width: 87px;
+    height: 19px;
+}
+.popups .pwrap .plist label input {
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: -2px;
+}
+
+/*END POPUPs*/
+
+/*END STYLE*/
+
+
+/*START HACKs*/
+*+html .game ul li.slot-info div.count_rating a {
+    top:-14px;
+}
+
+*+html .search form ul li label input.text {
+    padding-top: 3px;
+    padding-bottom: 0;
+}
+
+*+html .search1 form ul li.input .text {
+    padding-top: 3px;
+    padding-bottom: 0;
+}
+
+*+html .search form ul li a.popup_more {
+    margin: 20px 0 0 5px;
+}
+
+*+html .game ul li.slot-info span.type_game, *+html .game ul li.slot-info a.casino {
+    margin-bottom: 0;
+}
+
+*+html .game ul li.img {
+    top:-3px;
+}
+
+*+html .game ul li.img ul {
+    height: 144px!important;
+    width: 197px;
+}
+
+*+html .game ul li.img ul li.more {
+    position: relative;
+    display: block;
+    right: -90px;
+    top:-136px;
+}
+
+*+html .game ul li.img ul li.more a {}
+*+html .game ul li.img ul li.more a.active {
+    right: 6px;
+    top:1px;
+}
+
+*+html .game ul li.img ul li.more .dropdown {
+    right: 92px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+/*END HACKs*/
