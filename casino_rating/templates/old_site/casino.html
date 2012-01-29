@@ -1,0 +1,136 @@
+{% extends 'default.html' %}
+{% load oldsitetags %}
+
+
+{% block content_class %} white{% endblock %}
+
+
+{% block content %}
+{% load_casino_articles casino %}
+<h1>{{ casino.name }}</h1>
+<center name="nocopydiv">
+    <strong><noindex>
+    <a class="extLink" href="external.jsp?rc=27" onclick="recLinkExt('Evrogrand');extCl(this.href);window.open(this.href);return false;" target="_blank"><strong>{{ casino.get_url }}</strong></a>&nbsp;<i>(В новом окне)</i><br></noindex></strong>
+</center>
+
+<div id="parwait" style="display:none">
+    <img src="/static/images/loader.gif" /> Сбор данных. Пожалуйста, подождите...
+</div>
+
+<div id="par"><hr>
+    <p align="right" class="menu right">
+        <a href="#start">В начало</a> | 
+        <a href="#parameters">Параметры</a> | 
+        <a href="#overview">Обзор</a> | 
+        {% for item in article_list.items %}
+        <a href="#link_{{ item.0 }}">{{ item.1.title }}</a> | 
+        {% endfor %}
+        <a href="#screenshots">Скриншоты</a> | 
+        <a href="#comments">Отзывы</a>
+    </p>
+    <a name="parameters"></a>
+    <div class="h3_center">Параметры</div>
+    <i>Оценка по 10-бальной системе умножается на вес и получаем итоговое значение по  каждому параметру, которое потом для удобства делим на 10. Сумма этих итоговых значений дает значение рейтинга. Чем выше рейтинг, тем выше позиция казино. <strong><a href="/articles.jsp?aid=26"><i>Читать подробнее о подсчете рейтинга...</i></a></strong></i><br /><br />
+
+
+    <div id="info_groups">
+        <div class="h3"><a href="#">Общие(18 шт.)</a></div>
+        <div>
+            <center>
+                <table width="80%">
+                    <tbody>
+                        <tr>
+                            <td class="param_name h5">Параметр</td>
+                            <td class="param_name h5">Значение</td>
+                            <td class="param_name h5">Оценка</td>
+                            <td class="param_name h5">Вес</td>
+                            <td class="param_name h5">Итог</td>
+                            <td class="param_name h5">Ваше мнение</td>
+                        </tr>
+                        <tr id="23050">
+                            <!--Имя параметра-->
+                            <td><i>Мобильная версия</i></td>
+                            <!--Значение-->
+                            <td class="param_value_l"><img class="param_1" height="13px" width="13px" src="/images/unit_bool_1.png"></td>
+                            <!--Оценка-->
+                            <td class="param_value">10.00</td>
+                            <!--Вес-->
+                            <td class="param_value">5.0</td>
+                            <!--Итог-->
+                            <td class="param_value">5.00</td>
+                            <!--Ваше мнение-->
+                            <td class="param_value_l">
+                                <input name="27_297_false" type="button" class="tf" value="Ложь" onclick="showDialog(297,1); return false;">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+        </div>
+    </div>
+
+    <hr />
+    <span class="left">
+        <strong>Играть в казино: <p name="nocopydiv"><strong>
+            <a class="extLink" href="external.jsp?rc=27" onclick="recLinkExt('Evrogrand');extCl(this.href);window.open(this.href);return false;" target="_blank">
+                <strong>http://eurogrand.com</strong></a>
+            </strong></p>
+        </strong>
+    </span>
+    <p class="menu right">
+        <a href="#start">В начало</a> | 
+        <a href="#parameters">Параметры</a> | 
+        <a href="#overview">Обзор</a> | 
+        {% for item in article_list.items %}
+        <a href="#link_{{ item.0 }}">{{ item.1.title }}</a> | 
+        {% endfor %}
+        <a href="#screenshots">Скриншоты</a> | 
+        <a href="#comments">Отзывы</a>
+    </p>
+
+    <a name="overview"></a>
+    <div class="h3_center">Обзор</div>
+    {{ casino.article|safe }}
+    <p><strong>Дата публикации: 2011-11-17 21:01:33.037</strong></p><br />
+    <p><i>Мнение администрации не всегда совпадает с мнением авторов!</i></p><br />
+    <p><i>Орфография, пунктуация и стилистика сохранены.</i></p>
+    <p><strong><i>Все права защищены. При копировании материалов, ссылка на casino-rating.org обязательна!</i></strong></p>
+                    
+
+    {% for article_set in article_list.items %}
+    <a name="link_{{ article_set.0 }}"></a>
+    <div class="h3_center">{{ article_set.1.title }}</div>
+    {% for item in article_set.1.list %}
+    <div class="article_title">{{ item.date|date:"d.m.Y" }} - <strong>{{ item.title }}</strong></div>
+    <div class="article_text">{{ item.text|safe }}</div>
+    {% endfor %}
+    {% endfor %}
+
+    {% load_casino_screenshots casino %}
+    <a name="screenshots"></a>
+    <div class="h3_center">Скриншоты</div>
+    <div class="menu_item"><a href="#screenshots">Скриншоты</a></div>
+
+    {% for screenshot_set in screenshot_list.items %}
+    <br><center><strong>{{ screenshot_set.1.title }}</strong>
+    <div class="TABLE">
+        {% for item in screenshot_set.1.list %}
+        <div class="left"><center>
+            <a class="zoom2" href="{{ item.image.url }}">
+                <img width="200" height="150" src="{{ item.image.url }}" alt="{{ item.name }}">
+            </a>
+            <br><i>{{ item.name }}</i>
+        </center></div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <a name="comments"></a>
+    <div class="menu_item"><a href="#comments">Отзывы</a></div>
+                
+
+    <!-- <link href="/css/form.css" rel="stylesheet" type="text/css"> -->
+    </center></center>
+</div>
+
+{% endblock %}

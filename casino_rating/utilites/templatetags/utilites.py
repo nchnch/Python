@@ -11,6 +11,14 @@ register = Library()
 
 
 @register.simple_tag
+def replace(value, char, replace):
+    """
+    Replace `char` of `value` to `replace` value
+    """
+    return str(value).replace(char, replace)
+
+
+@register.simple_tag
 def order_icon(field, ordering, asc_ico=ASC_ICO, desc_ico=DESC_ICO):
     """
     Get image for show ordering icon

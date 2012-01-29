@@ -12,6 +12,9 @@ def main():
     # _parameters()
     # _country()
     # _casino()
+    # _casino_parameters()
+    _casino_screenshots()
+    # _casino_articles()
 
     
     # _developers()
@@ -66,6 +69,11 @@ def _casino():
     """
     Move casino
     """
+    rating = {}
+    c_old.execute("""SELECT site_id AS id, "sum" FROM view_simple_rating ORDER BY id ASC""")
+    for item in c_old.fetchall():
+        rating[item["id"]] = "%.2f" % item["sum"]
+    
     c_old.execute("""SELECT id, logo, country, casino_name, casino_domain, email, "path", roulettes,
     pokerrooms, ready, accept, sell, otstoy, otstoy_desc, max_show_slots, description, article, 
     comment FROM managers_sites ORDER BY id ASC""")
@@ -77,10 +85,58 @@ def _casino():
 
         c_new.execute("""INSERT INTO old_site_casino(id, logo, country_id, name, domain, email,
         "path", roulettes, pokerrooms, ready, accept, sell, otstoy, otstoy_desc, max_show_slots, 
-        description, article, comment, "order_google", "ru_name", "enabled") VALUES
-        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 0, '', true)
-        """, item)
+        description, article, comment, "rating", "ru_name", "enabled") VALUES
+        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, '', true)
+        """, item + [rating.get(item["id"], "0")])
     conn_new.commit()
+
+
+def _casino_parameters():
+    """
+    Move casin parameters
+    """
+    c_old.execute("""SELECT pr.id, manager_id, casino_id, parameter_id, value, comments, comments_autor 
+    FROM managers_rating pr INNER JOIN managers_sites s ON s.id=pr.casino_id 
+    INNER JOIN parameters p ON p.id=pr.parameter_id ORDER BY id ASC""")
+    # print len(c_old.fetchall())
+    for item in c_old.fetchall():
+        # if not item["manager_id"]: item["manager_id"] = None
+        c_new.execute("""INSERT INTO old_site_parametertocasino(id, manager_id, casino_id, 
+        parameter_id, value, comment, author) VALUES(%s, %s, %s, %s, %s, %s, %s)""", item)
+    conn_new.commit()
+
+
+def _casino_screenshots():
+    """
+    Copy casino screenshots
+    """
+    c_old.execute("""SELECT s.id, casino_id, group_id, image_path, s.comment FROM screenshots s
+    INNER JOIN managers_sites m ON m.id=s.casino_id
+    ORDER BY id ASC""")
+    # print len(c_old.fetchall())
+    for item in c_old.fetchall():
+        c_new.execute("""INSERT INTO old_site_casinoscreenshot(id, casino_id, type, image, name) 
+        VALUES(%s, %s, %s, %s, %s)""", item)
+    conn_new.commit()
+
+
+def _casino_articles():
+    """
+    Copy casino articles (small texts)
+    """
+    c_old.execute("""SELECT a.id, a.last_update, attach_id, title, a.article, owner_id, article_type
+    FROM articles a INNER JOIN managers_sites m ON m.id=attach_id ORDER BY id ASC""")
+    for item in c_old.fetchall():
+        c_new.execute("""INSERT INTO old_site_casinoarticle(id, "date", casino_id, title, "text",
+        owner_id, type) VALUES(%s, %s, %s, %s, %s, %s, %s)""", item)
+    conn_new.commit()
+
+
+
+
+
+
+
 
 
 def _developers():
@@ -237,21 +293,6 @@ def _casino_params():
             c_new.execute("""INSERT INTO casino_casinotopaymentsystem(casino_id, paymentsystem_id, type) 
             VALUES(%s, %s, %s)""", (new_id, payment_id, item["payments"][payment_id]))
         conn_new.commit()
-
-        
-def _casino_screenshots():
-    """
-    Copy casino screenshots
-    """
-    old_to_new = _old_to_new()
-
-    c_old.execute("""SELECT casino_id, image_path, comment FROM screenshots WHERE group_id=3 ORDER BY id ASC""")
-    for item in c_old.fetchall():
-        if not old_to_new.has_key(item["casino_id"]):
-            continue
-        c_new.execute("""INSERT INTO casino_casinoimage(lang_id, casino_id, name, image) 
-        VALUES(1, %s, %s, %s)""", (old_to_new[item["casino_id"]], item["comment"], item["image_path"]))
-    conn_new.commit()
 
 
 def _games():

@@ -1,19 +1,37 @@
-#extlink:focus,
-#extlink:hover,
-#extlink:active { color:#4D87C7; text-decoration:none; }
+#extlink:focus, #extlink:hover, #extlink:active { color:#4D87C7; text-decoration:none; }
+select.showBy {width: 70%;}
+td.no-border {border-bottom: none;}
+a.casino {color: #182E7A;}
+td.padding {padding-top:10px;}
+a.rating {font-size:xx-large;}
+.TABLE {display: table;width: 100%;}
+.menu_item {display: none;}
+#parwait {vertical-align: middle;text-align: center;font-size: large;font-style: italic;font-weight: bold;color: #BDB9C9;}
+/*#par {display: none;}*/
+p.right {text-align: right;}
+td.param_name {background-color: #BCB8C9;text-align: center;}
+td.param_value {text-align: center;width: 70px;}
+td.param_value_l {text-align: center;width: 150px;}
+span.left {text-align: left;float: left;}
+div.left {float: left;}
+img {margin:5px;}
 
-select.showBy {
-    width: 70%;
-}
-td.no-border {
-    border-bottom: none;
-}
-a.casino {
-    color: #182E7A;
-}
-td.padding {
-    padding-top:10px;
-}
-a.rating {
-    font-size:xx-large;
-}
+#col3_content .container {}
+#col3_content h1  {text-align:center;}
+#col3_content .container>div {padding:0 22px 0 0;}
+#col3_content .container .top_bg {background:url('../images/art_right_top2.png') 100% 0 no-repeat;}
+#col3_content .container .top_bg .content {background:#CFDCE4;height:40px;}
+#col3_content .container .content_bg {background:url('../images/art_right_center.png') 100% 0 repeat-y;}
+#col3_content .container .content_bg .content {background:#CFDCE4;padding:0 40px 40px 35px;}
+#col3_content .container .content_bg .content .h3_center {margin:20px 0 25px 0;}
+#col3_content .container .content_bg .content .article_title {margin: 0px 0 0 0;}
+#col3_content .container .content_bg .content .article_text {margin: 0px 0 40px 0;}
+
+
+#col3_content .container .bottom_bg {height:22px;margin:0 22px 0 35px;background:url('../images/art_center_bottom.png') 0 0 repeat-x;padding:0;}
+#col3_content .container .bottom_bg>div {height:22px;}
+#col3_content .container .bottom_bg .right_bg {float:right;width:22px;background:url('../images/art_right_bottom1.png') 0 0 no-repeat;margin-right:-22px;}
+#col3_content .container .bottom_bg .left_bg {float:left;width:35px;margin-left:-35px;background:url('../images/art_left_bottom.png') 0 0 no-repeat;}
+
+#col3_content .container.white .top_bg .content {background:#fff;}
+#col3_content .container.white .content_bg .content {background:#fff;}

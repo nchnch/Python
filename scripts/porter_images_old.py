@@ -16,8 +16,9 @@ def main():
     """
     Main function for run all processes
     """
-    _casino_logo()
-    # _casino_screenshots()
+    # _casino_logo()
+    _casino_screenshots()
+    
     # _slots_logo()
 
 
@@ -36,11 +37,11 @@ def _casino_screenshots():
     """
     Copy casino screenshots
     """
-    c.execute("""SELECT id, casino_id, image FROM casino_casinoimage WHERE image<>'' ORDER BY id ASC""")
+    c.execute("""SELECT id, casino_id, image FROM old_site_casinoscreenshot WHERE image<>'' ORDER BY id ASC""")
     for item in c.fetchall():
         filename = copy_file("http://casino-rating.org/images/logos/%s" % item["image"], "casino", 
             get_file_extension(item["image"]))
-        c.execute("""UPDATE casino_casinoimage SET image=%s WHERE id=%s""", (filename, item["id"]))
+        c.execute("""UPDATE old_site_casinoscreenshot SET image=%s WHERE id=%s""", (filename, item["id"]))
     conn_new.commit()
 
 

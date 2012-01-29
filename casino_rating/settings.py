@@ -97,8 +97,8 @@ CACHES = {
 }
 
 
-# if DEBUG:
-    # from debug_local import *
+if DEBUG:
+    from debug_local import *
 
 
 # A sample logging configuration. The only tangible logging

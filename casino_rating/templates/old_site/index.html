@@ -1,4 +1,5 @@
 {% extends 'default.html' %}
+{% load utilites %}
 
 
 {% block content %}
@@ -7,7 +8,7 @@
     <tr>
         <td width="250px">
             Всего казино по запросу:<strong> {{ casino_list.paginator.count }}</strong><br>
-            Максимальная возможная оценка: <strong>439.6</strong>
+            Максимальная возможная оценка: <strong>{{ max_rating }}</strong>
         </td>
         <td align='center'>
             {% for page in casino_list.paginator.page_range %}
@@ -66,7 +67,7 @@
                 </center>
             </td>
             <td class='no-border padding' valign="middle" align="center">
-                <a class='rating' href='/casino_info.jsp?cid={{ item.id }}'>334.37</a>
+                <a class='rating' href='/casino_info.jsp?cid={{ item.id }}'>{% replace item.rating "," "." %}</a>
             </td>
         </tr>
         {% endfor %}

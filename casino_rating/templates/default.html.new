@@ -1,0 +1,2222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//RU" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>Играть в казино онлайн бесплатно и на деньги</title>
+    
+
+    <meta name="google-site-verification" content="wrIIpZXl8R8Q3RR8EFF6MlVa5brspZtR1q0lZAnlFlQ"/>
+    <meta name='yandex-verification' content='63d5495ab62906c8'/>
+    <meta name='yandex-verification' content='4c703e6b6c4bc336'/>
+    <meta name="usdzwinruurlchecker" content="8bf12bbc88d8e7195f689bcd889fde4d">
+    <meta name="usdzwinruurlchecker" content="7cfc5af1edbc10c738a76de207997afe">
+
+    <link href="/css/my_layout.css" rel="stylesheet" type="text/css" />
+
+    <link href="/css/header.css" rel="stylesheet" type="text/css" />
+    <link href="/favicon.ico" rel="icon"  type="image/x-icon"  />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="/css/redmond/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="/fancybox/jquery.fancybox-1.2.6.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script src="/js/header.js" type="text/javascript"></script>
+    <script src="/js/jquery.tools.min_1.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
+    <script src="/js/cust_select_plugin.js" type="text/javascript"></script>
+    <script src="/fancybox/jquery.fancybox-1.2.6.pack.js" type="text/javascript"></script>
+    <script src="/js/jq.autocomplete.js" type="text/javascript"></script>
+    
+    
+    
+
+    <style type="text/css">
+        #extlink:focus,
+        #extlink:hover,
+        #extlink:active { color:#4D87C7; text-decoration:none; }
+
+        select.showBy {
+            width: 70%;
+        }
+        td.no-border {
+            border-bottom: none;
+        }
+        a.casino {
+            color: #182E7A;
+        }
+        td.padding {
+            padding-top:10px;
+        }
+        a.rating {
+            font-size:xx-large;
+        }
+    </style>
+    <script src="/js/disableCopy.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            var xx = document.getElementsByName("nocopydiv");
+            for (var i = 0; i < xx.length; i++) {
+                preventSelection(xx[i]);
+            }
+        });
+    </script>
+
+
+    <!--Google Analytics-->
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        if(typeof _gat != 'undefined'){
+            var tracker = _gat._getTracker("UA-12658219-1");
+            tracker._trackPageview();
+        }
+    </script>
+    <!--/Google Analytics-->
+    <script type="text/javascript">
+        var ie6 = 0;
+    </script>
+    <!--[if IE 6]>
+    <script type="text/javascript">
+        ie6 = 1;
+    </script>
+    <![endif]-->
+    <script type="text/javascript">
+        if (ie6) {
+            window.location = "ie6.jsp";
+        }
+    </script>
+    <script type="text/javascript">
+        var ie78 = 0;
+    </script>
+    <!--[if lte IE 7]>
+    <script type="text/javascript">
+        var ie78 = 1;
+    </script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+    <script type="text/javascript">
+        var ie78 = 1;
+    </script>
+    <![endif]-->
+
+    <!-- ClickTale Top part -->
+    <script type="text/javascript">
+        var WRInitTime=(new Date()).getTime();
+        var selVal=1;
+    </script>
+    <!-- ClickTale end of Top part -->
+    <script src="/js/jquery.lazyload-ad-1.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".lazyload_ad").lazyLoadAd({
+                forceLoad: true
+            });
+        })
+    </script>
+
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+        google.load('search', '1');
+        google.setOnLoadCallback(function(){
+            new google.search.CustomSearchControl('009639402916221506493:lo7bihs1wh4').draw('cse');
+        }, true);
+    </script>
+
+    <script src="/js/jquery.cookie.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function processKeyPress(event) {
+            if (event.keyCode=='13') selit();
+        }
+
+        function selit() {
+            debugger;
+            if(selVal==0)selVal=1;
+            //alert($("#search"+selVal).val());
+            window.location="search.jsp?query_string="+$("#search"+selVal).val()+"&search_type="+selVal;
+        }
+
+        function onVoteClick() {
+            $.ajax({
+                url:'/dataLoader?action=vote&id='+ $('input[name=vote_answer]').attr('id'),
+                async: false,
+                success: function(data, result) {
+                    if (!result)
+                        alert('Не удалось сохранить Ваш выбор :(');
+                }});
+
+            $.cookie('vote_id_'+$('input[name=vote_id]').val(), $('input[name=vote_id]').val(), {expires: 365});
+            showResult();
+        }
+        $(function () {
+            $('input[name=voteOk]', this).attr('disabled', 'disabled');
+
+            var name = 'vote_id_'+$('input[name=vote_id]').val();
+            if ($.cookie(name)) {
+                showResult();
+            }
+            $('input[name=voteOk]', this).attr('disabled', 'disabled');
+            $('input[name=vote_answer]').change(function() {
+                $('input[name=voteOk]').removeAttr('disabled');
+            });
+        });
+
+        function showResult() {
+            var text = $.ajax({
+                url:'/dataLoader?action=list&type=votes&vid=' + $('input[name=vote_id]').val(),
+                async: false,
+                success: function(data, result) {
+                    if (!result)
+                        alert('Ошибка сервера');
+                }}).responseText;
+            text += "<p class='align-right'><a href='/votes.jsp'>Ещё опросы...</a></p>";
+            $('div[id=vote]').fadeOut('slow');
+            $('div[id=vote]').html(text);
+            $('div[id=vote]').fadeIn('slow');
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $(".acc").dialog({
+                bgiframe: true,
+                autoOpen: false,
+                height: 600,
+                width: 900,
+                modal: true,
+                buttons:{ 'Отмена (Выбор параметров будет сохранен)': function() {
+                    $(this).dialog('close');
+                },
+                    'Выбрать': function() {
+                        document.allpf.submit();
+                    }
+                }
+            });
+            $(".acc").removeClass('display');
+
+            $("input[name=allParamsDialog]").click(function() {
+                //todo: CHECK ALL SELECTED
+                $(".acc").dialog('open');
+            });
+        })
+    </script>
+</head>
+
+<body>
+<a name="top"></a>
+<div class="page">
+    
+<link rel="stylesheet" href="/js/header/style.css">
+
+
+
+    
+        <script src="/js/header/header-application.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                loadBanners(5000);
+            });
+        </script>
+        <div class="ah" id="ah-application"></div>
+    
+    
+
+
+<div id="teaser">
+    <div class="casino_types">
+        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="params" style="border-right:0" width="216px">
+                    
+                    
+                    <div class="center" onClick="recLink('Угловой баннер', 'реклама');">
+                        <noindex>
+                            <div class="center"><p><a href="http://www.crystalslot.com/?ref=10094"><img onclick="http://www.crystalslot.com/?ref=10094" src="../upload_dir/u0_i498_crystal_gifb_125-125.gif" alt="" width="125" height="125" /></a></p></div>
+                        </noindex>
+                    </div>
+                </td>
+                <td class="params" >
+                    <div class="center">
+                        <form method="get" action="/">
+                            <table width="80%" cellspacing="10" border="0">
+                                    
+                                    
+                                    
+                                    
+                                <tr>
+                                    
+                                    <td id='params_combo'>
+                                        
+                                            <p class='center'><label>Контроль честности</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='74_1'>Да</option><option  value='74_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие системы хеширования будущих результатов игр (обычно используется MD5)' onmouseover="this.title='Наличие системы хеширования будущих результатов игр (обычно используется MD5)'" alt='Наличие системы хеширования будущих результатов игр (обычно используется MD5)'/>
+                                        
+                                    </td>
+                                    
+                                    
+                                    <td id='params_combo'>
+                                        
+                                            <p class='center'><label>Джекпот</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='77_1'>Да</option><option  value='77_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие особой (как правило большой) выплаты в случае выпадения у игрока редкой комбинации' onmouseover="this.title='Наличие особой (как правило большой) выплаты в случае выпадения у игрока редкой комбинации'" alt='Наличие особой (как правило большой) выплаты в случае выпадения у игрока редкой комбинации'/>
+                                        
+                                    </td>
+                                    
+                                    
+                                    <td id='params_combo'>
+                                        
+                                            <p class='center'><label>Бездепозитный бонус (за регистрацию)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='127_1'>Да</option><option  value='127_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Премия за регистрацию' onmouseover="this.title='Премия за регистрацию'" alt='Премия за регистрацию'/>
+                                        
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><div class="center"><strong><a href="/parameters_info.jsp">Справка по параметрам</a></strong></div></td>
+                                    <td><div class="center"><input class="select_button" type="submit" name="onFilter" value="Выбрать"></div></td>
+                                    <td><div class="center"><input class="select_button" type="button" name="allParamsDialog" value="Все параметры"></div></td>
+                                </tr>
+                            </table>
+                        </form>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="acc" id="acc" style="padding:10px;display: none">
+    <div class="center h3" style="color: #C40000">Все параметры</div>
+    <div align="center" style="font-size:80%;" >
+        <form id="allpf" name="allpf" method="get" action="/">
+            <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0" >
+                
+                    <tr>
+                        <td class='params_combo2' valign='top' style='border-bottom:#C9DAE3 1px solid;'>
+                            <img style='float:right' src='/images/info_m.png' title='Перечень однопользовательских игр (игрок-сервер)'>
+                            <div class="h5">Игры (однопользовательские)</div>
+                        </td>
+                        <td valign='top' colspan='2' style='border-bottom:#C9DAE3 1px solid;'>
+                            <table width='100%'>
+                                
+                                
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="276" >Азиатские игры
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="120" >Аркады
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="240" >Баккара
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="292" >Бинго
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="112" >Блэк-Джек
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="260" >Больше-Меньше
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="262" >Боулинг
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="114" >Видеопокер
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="115" >Видеослоты
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="258" >Война казино
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="263" >Дартс
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="230" >Кено
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="293" >Колесо фортуны
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="261" >Красная собака
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="113" >Крепс (кости)
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="257" >Лотерея
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="188" >Лото
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="282" >Нарды
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="259" >Очко
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="96" >Покер
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="94" >Рулетка
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="232" >Русская рулетка
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="264" >Русский покер
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="231" >Сапер 
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="275" >Сик Бо
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="92" >Слоты
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="267" >Камень-Ножницы-Бумага
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="246" >Другие игры
+                                    </td>
+                                    
+                            </table>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class='params_combo2' valign='top' style='border-bottom:#C9DAE3 1px solid;'>
+                            <img style='float:right' src='/images/info_m.png' title='Перечень мультиплеерных игр (игрок-игрок)'>
+                            <div class="h5">Игры (мультиплеерные)</div>
+                        </td>
+                        <td valign='top' colspan='2' style='border-bottom:#C9DAE3 1px solid;'>
+                            <table width='100%'>
+                                
+                                
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="253" >Баккара
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="256" >Блэк-Джек
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="149" >Карты
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="150" >Крепс (Кости)
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="148" >Морской бой
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="281" >Нарды
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="278" >Очко
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="291" >Покер
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="289" >Рулетка
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="277" >Сик Бо
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="152" >Шашки
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="268" >Камень-Ножницы-Бумага
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="247" >Другие игры
+                                    </td>
+                                    
+                            </table>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class='params_combo2' valign='top' style='border-bottom:#C9DAE3 1px solid;'>
+                            <img style='float:right' src='/images/info_m.png' title=''>
+                            <div class="h5">Живые игры и прочее</div>
+                        </td>
+                        <td valign='top' colspan='2' style='border-bottom:#C9DAE3 1px solid;'>
+                            <table width='100%'>
+                                
+                                
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="283" >Рулетка live
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="306" >Теле игры
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="285" >БлекДжек live
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="284" >Баккара live
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="273" >Ставки на спорт
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="274" >Финансовые рынки
+                                    </td>
+                                    
+                            </table>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class='params_combo2' valign='top' style='border-bottom:#C9DAE3 1px solid;'>
+                            <img style='float:right' src='/images/info_m.png' title='Компания-разработчик движка игрового портала'>
+                            <div class="h5">Производитель софта</div>
+                        </td>
+                        <td valign='top' colspan='2' style='border-bottom:#C9DAE3 1px solid;'>
+                            <table width='100%'>
+                                
+                                
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="101" >Igrosoft
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="107" >Cryptologic
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="105" >Playtech
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="106" >Microgaming
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="228" >Bossmedia
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="193" >Globotech
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="279" >Net Entertainment AB
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="237" >i-Vegas
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="194" >Эксклюзивный софт
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="108" >Моссвет
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="102" >Gaminator
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="265" >JavaScript (автор неизвестен)
+                                    </td>
+                                    
+                            </table>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class='params_combo2' valign='top' style='border-bottom:#C9DAE3 1px solid;'>
+                            <img style='float:right' src='/images/info_m.png' title='Определяет набор платежных систем для ввода денег в казино'>
+                            <div class="h5">Платежные системы (ввод денег)</div>
+                        </td>
+                        <td valign='top' colspan='2' style='border-bottom:#C9DAE3 1px solid;'>
+                            <table width='100%'>
+                                
+                                
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="89" >WebMoney
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="91" >Yandex-деньги
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="159" >Ukash
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="122" >RBK-Money
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="90" >PayPal
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="158" >Moneta.ru
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="156" >MasterCard
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="155" >Visa
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="99" >SMS
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="165" >Click2Pay
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="163" >ClickandBuy
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="160" >EntroPay
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="97" >Interkassa
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="157" >Moneybookers
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="154" >MoneyMail
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="161" >myCitadel
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="164" >NETELLER
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="167" >Nordea solo
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="168" >Paymer чеки
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="166" >Paysafecard
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="162" >Wirecard
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="98" >Z-payment
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="243" >Еще системы
+                                    </td>
+                                    
+                            </table>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class='params_combo2' valign='top' style='border-bottom:#C9DAE3 1px solid;'>
+                            <img style='float:right' src='/images/info_m.png' title='Определяет набор платежных систем для вывода денег'>
+                            <div class="h5">Платежные системы (вывод денег)</div>
+                        </td>
+                        <td valign='top' colspan='2' style='border-bottom:#C9DAE3 1px solid;'>
+                            <table width='100%'>
+                                
+                                
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="95" >WebMoney
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="104" >Yandex-деньги
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="298" >Ukash
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="299" >RBK-Money
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="169" >PayPal
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="300" >Moneta.ru
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="252" >MasterCard
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="251" >Visa
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="100" >Мобильный телефон
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="180" >Abaqoos
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="178" >Dankort
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="177" >Diners
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="250" >E-Gold
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="172" >EcoCard
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="175" >eNets
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="185" >Giropay
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="176" >iDEAL
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="183" >INSTADEBIT
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="171" >Laser
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="249" >Moneybookers
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="244" >Еще системы
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="170" >MoneyMail
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="182" >Paymer чеки
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="174" >POLi
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="181" >Przelewy24
+                                    </td>
+                                    
+                                
+                                
+                                    </tr>
+                                
+                                <tr>
+                                    
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="184" >Sofortüberweisung
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="186" >Ticket Premium
+                                    </td>
+                                    
+                                
+                                    <td width='20%' align='left' valign='top'>
+                                        
+                                        
+                                        <input type="checkbox" name="option_id" value="179" >UseMyBank
+                                    </td>
+                                    
+                            </table>
+                        </td>
+                    </tr>
+                
+            </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">служебные параметры ( не для публикации)</div></td>
+                    </tr>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Общие</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Мобильная версия</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='297_1'>Да</option><option  value='297_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие мобильной версии казино' onmouseover="this.title='Наличие мобильной версии казино'" alt='Наличие мобильной версии казино'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Наличие скачиваемой версии</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='82_1'>Да</option><option  value='82_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Можно ли играть с помощью программы (не в браузере)' onmouseover="this.title='Можно ли играть с помощью программы (не в браузере)'" alt='Можно ли играть с помощью программы (не в браузере)'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Наличие браузерной версии</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='147_1'>Да</option><option  value='147_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Возможность играть прямо из браузера.' onmouseover="this.title='Возможность играть прямо из браузера.'" alt='Возможность играть прямо из браузера.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Дизайн</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='93_m5'>от 1 до 5 (ниже среднего)</option><option  value='93_b5'>от 1 до 10 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Дизайн сайта' onmouseover="this.title='Дизайн сайта'" alt='Дизайн сайта'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Симпатии игроков</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='314_m5'>от 1 до 5 (ниже среднего)</option><option  value='314_b5'>от 1 до 10 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Нет подсказки' onmouseover="this.title='Нет подсказки'" alt='Нет подсказки'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Юзабилити</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='78_m5'>от 1 до 5 (ниже среднего)</option><option  value='78_b5'>от 1 до 10 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Удобство и расположение элементов управления на сайте' onmouseover="this.title='Удобство и расположение элементов управления на сайте'" alt='Удобство и расположение элементов управления на сайте'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Сайт мертвый</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='222_1'>Да</option><option  value='222_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='На сайте нет обновлений, тех поддержка молчит' onmouseover="this.title='На сайте нет обновлений, тех поддержка молчит'" alt='На сайте нет обновлений, тех поддержка молчит'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Уникальный контент</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='223_1'>Да</option><option  value='223_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Тексты данного сайта уникальны и более ни где не встречаются.' onmouseover="this.title='Тексты данного сайта уникальны и более ни где не встречаются.'" alt='Тексты данного сайта уникальны и более ни где не встречаются.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Репутация</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='79_1'>Нейтральная</option><option  value='79_2'>Хорошая</option><option  value='79_3'>Безупречная</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Насколько казино порядочное по мнению игроков' onmouseover="this.title='Насколько казино порядочное по мнению игроков'" alt='Насколько казино порядочное по мнению игроков'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Регулярно проходит аудит</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='111_1'>Да</option><option  value='111_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Проходит аудит на случайность результатов и справедливость выплат.' onmouseover="this.title='Проходит аудит на случайность результатов и справедливость выплат.'" alt='Проходит аудит на случайность результатов и справедливость выплат.'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Стабильность, корректность работы сайта</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='80_m5'>от 1 до 5 (ниже среднего)</option><option  value='80_b5'>от 1 до 10 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Стабильность и правильность работы сайта' onmouseover="this.title='Стабильность и правильность работы сайта'" alt='Стабильность и правильность работы сайта'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Минимальная сумма для ввода</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='310_1'>$50 и менее</option><option  value='310_2'>$40 и менее</option><option  value='310_3'>$30 и менее</option><option  value='310_4'>$20 и менее</option><option  value='310_5'>$10 и менее</option><option  value='310_6'>$5 и менее</option><option  value='310_7'>$1 и менее</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Минимальная сумма денег, которую игрок может завести на счет.' onmouseover="this.title='Минимальная сумма денег, которую игрок может завести на счет.'" alt='Минимальная сумма денег, которую игрок может завести на счет.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Минимальная сумма для вывода</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='86_1'>$50 и менее</option><option  value='86_2'>$40 и менее</option><option  value='86_3'>$30 и менее</option><option  value='86_4'>$20 и менее</option><option  value='86_5'>$10 и менее</option><option  value='86_6'>$5 и менее</option><option  value='86_7'>$1 и менее</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Минимальная возможная сумма которую можно вывести из казино' onmouseover="this.title='Минимальная возможная сумма которую можно вывести из казино'" alt='Минимальная возможная сумма которую можно вывести из казино'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Штрафы (низкий оборот, вывод средств и т.п)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='87_1'>Да</option><option  value='87_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Игрок делает недостаточно ставок до вывода денег обратно.' onmouseover="this.title='Игрок делает недостаточно ставок до вывода денег обратно.'" alt='Игрок делает недостаточно ставок до вывода денег обратно.'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Сервис</div></td>
+                    </tr>
+                       
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Скорость ввода денег</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='202_1'>Более суток</option><option  value='202_2'>Более 3 часов</option><option  value='202_3'>Мгновенно</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Как быстро казино готово зачислить игроку деньги на счет.' onmouseover="this.title='Как быстро казино готово зачислить игроку деньги на счет.'" alt='Как быстро казино готово зачислить игроку деньги на счет.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Скорость вывода денег</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='239_1'>Более суток</option><option  value='239_2'>Более 3 часов</option><option  value='239_3'>Мгновенно</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Как быстро казино готово отправить игроку его деньги.' onmouseover="this.title='Как быстро казино готово отправить игроку его деньги.'" alt='Как быстро казино готово отправить игроку его деньги.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Служба поддержки</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='81_m3'>от 0 до 3 (ниже среднего)</option><option  value='81_b3'>от 0 до 6 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Качество техподдержки.  0 - значит что или ее нет или она не отвечает' onmouseover="this.title='Качество техподдержки.  0 - значит что или ее нет или она не отвечает'" alt='Качество техподдержки.  0 - значит что или ее нет или она не отвечает'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Доступ к истории ставок</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='203_1'>Да</option><option  value='203_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Есть возможность увидеть всю историю ставок игрока' onmouseover="this.title='Есть возможность увидеть всю историю ставок игрока'" alt='Есть возможность увидеть всю историю ставок игрока'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Контроль игромании (ответственная игра)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='128_1'>Да</option><option  value='128_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Помощь тем кто не может остановиться сам' onmouseover="this.title='Помощь тем кто не может остановиться сам'" alt='Помощь тем кто не может остановиться сам'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Наличие телефона для связи</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='144_1'>Да</option><option  value='144_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие телефона для связи' onmouseover="this.title='Наличие телефона для связи'" alt='Наличие телефона для связи'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Форум</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='216_1'>Да</option><option  value='216_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие форума' onmouseover="this.title='Наличие форума'" alt='Наличие форума'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Наличие чата</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='200_1'>Да</option><option  value='200_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие чата с другими игроками.' onmouseover="this.title='Наличие чата с другими игроками.'" alt='Наличие чата с другими игроками.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Стриптиз </label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='236_1'>Да</option><option  value='236_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Без комментариев' onmouseover="this.title='Без комментариев'" alt='Без комментариев'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Честность</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Контроль честности</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='74_1'>Да</option><option  value='74_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие системы хеширования будущих результатов игр (обычно используется MD5)' onmouseover="this.title='Наличие системы хеширования будущих результатов игр (обычно используется MD5)'" alt='Наличие системы хеширования будущих результатов игр (обычно используется MD5)'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Псевдо-контроль честности</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='204_1'>Да</option><option  value='204_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Уверения казино в том, что у них есть контроль честности, в то время, как его нет.' onmouseover="this.title='Уверения казино в том, что у них есть контроль честности, в то время, как его нет.'" alt='Уверения казино в том, что у них есть контроль честности, в то время, как его нет.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Сомнительные пункты в правилах</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='0_1'>Да</option><option  value='0_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Стоит знать об этих пунктах заранее' onmouseover="this.title='Стоит знать об этих пунктах заранее'" alt='Стоит знать об этих пунктах заранее'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Содержится ложная, противоречивая информация</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='218_1'>Да</option><option  value='218_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Не точности или явная лож на сайте.' onmouseover="this.title='Не точности или явная лож на сайте.'" alt='Не точности или явная лож на сайте.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Мега статистика игр</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='118_1'>Да</option><option  value='118_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Результаты всех игр с момента существования в казино каждой игры' onmouseover="this.title='Результаты всех игр с момента существования в казино каждой игры'" alt='Результаты всех игр с момента существования в казино каждой игры'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Оформление</div></td>
+                    </tr>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Игры</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Существуют запрещенные системы игры</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='255_1'>Да</option><option  value='255_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Запрещено играть по система мартингела и ей подобным' onmouseover="this.title='Запрещено играть по система мартингела и ей подобным'" alt='Запрещено играть по система мартингела и ей подобным'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Джекпот</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='77_1'>Да</option><option  value='77_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие особой (как правило большой) выплаты в случае выпадения у игрока редкой комбинации' onmouseover="this.title='Наличие особой (как правило большой) выплаты в случае выпадения у игрока редкой комбинации'" alt='Наличие особой (как правило большой) выплаты в случае выпадения у игрока редкой комбинации'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Игры 50/50</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='288_1'>Да</option><option  value='288_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Игры где шансы казино и игрока равны.' onmouseover="this.title='Игры где шансы казино и игрока равны.'" alt='Игры где шансы казино и игрока равны.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Живые игры (видеотрансляция)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='269_1'>Да</option><option  value='269_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Игры с живым дилером (видео трансляция)' onmouseover="this.title='Игры с живым дилером (видео трансляция)'" alt='Игры с живым дилером (видео трансляция)'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Игра без денег (демо-режим)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='83_1'>Да</option><option  value='83_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие демо режима' onmouseover="this.title='Наличие демо режима'" alt='Наличие демо режима'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Максимальная ставка ($)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='85_2'>Более $1</option><option  value='85_3'>Более $10</option><option  value='85_4'>Более $100</option><option  value='85_5'>Более $1000</option><option  value='85_6'>Более $10000</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Размер максимальной ставки которую можно поставить' onmouseover="this.title='Размер максимальной ставки которую можно поставить'" alt='Размер максимальной ставки которую можно поставить'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Минимальная ставка ($)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='84_2'>Менее $5</option><option  value='84_3'>Менее $0.5</option><option  value='84_4'>Менее $0.05</option><option  value='84_5'>Менее $0.005</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Размер минимальной ставки которую можно поставить' onmouseover="this.title='Размер минимальной ставки которую можно поставить'" alt='Размер минимальной ставки которую можно поставить'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Полноэкранные игры</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='146_1'>Да</option><option  value='146_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Игры открываются во весь экран' onmouseover="this.title='Игры открываются во весь экран'" alt='Игры открываются во весь экран'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Проводятся турниры</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='116_1'>Да</option><option  value='116_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Игроки могут соревноваться с друг другом играя в разные или в одну игру' onmouseover="this.title='Игроки могут соревноваться с друг другом играя в разные или в одну игру'" alt='Игроки могут соревноваться с друг другом играя в разные или в одну игру'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Количество игр</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='73_2'>Более 5</option><option  value='73_3'>Более 20</option><option  value='73_4'>Более 50</option><option  value='73_5'>Более 100</option><option  value='73_6'>Более 200</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Количество игр в казино' onmouseover="this.title='Количество игр в казино'" alt='Количество игр в казино'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Уникальные игры</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='290_1'>Да</option><option  value='290_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие уникальных игр' onmouseover="this.title='Наличие уникальных игр'" alt='Наличие уникальных игр'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Легальность</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Копия лицензии на сайте</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='215_1'>Да</option><option  value='215_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие копии лицензии на сайте' onmouseover="this.title='Наличие копии лицензии на сайте'" alt='Наличие копии лицензии на сайте'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Наличие адреса для связи </label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='145_1'>Да</option><option  value='145_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие адреса для связи ' onmouseover="this.title='Наличие адреса для связи '" alt='Наличие адреса для связи '/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Информация о владельце  домена закрыта</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='208_1'>Да</option><option  value='208_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Информация может быть открытой или закрытой' onmouseover="this.title='Информация может быть открытой или закрытой'" alt='Информация может быть открытой или закрытой'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Бонусная политика</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Бонусы за посещение</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='294_1'>Да</option><option  value='294_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Премии за то что игрок появляется на сайте' onmouseover="this.title='Премии за то что игрок появляется на сайте'" alt='Премии за то что игрок появляется на сайте'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Другие бонусы</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='296_1'>Да</option><option  value='296_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Наличие иных бонусных поощрений игрока.' onmouseover="this.title='Наличие иных бонусных поощрений игрока.'" alt='Наличие иных бонусных поощрений игрока.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Бонус на первое пополнение</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='76_1'>Есть</option><option  value='76_2'>Более 50%</option><option  value='76_3'>Более 100%</option><option  value='76_4'>Более 200%</option><option  value='76_5'>Более 300%</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Начисляемые премии на заведенные игроком деньги ' onmouseover="this.title='Начисляемые премии на заведенные игроком деньги '" alt='Начисляемые премии на заведенные игроком деньги '/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Бонусы за последующие пополнения счета</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='126_1'>Да</option><option  value='126_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Платиться при втором и т.д пополнениях счета' onmouseover="this.title='Платиться при втором и т.д пополнениях счета'" alt='Платиться при втором и т.д пополнениях счета'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Бездепозитный бонус (за регистрацию)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='127_1'>Да</option><option  value='127_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Премия за регистрацию' onmouseover="this.title='Премия за регистрацию'" alt='Премия за регистрацию'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Лицевые счета</div></td>
+                    </tr>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Свойства рулетки</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Соотношение на шансах max/min</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='233_1'>Менее 10</option><option  value='233_2'>Более 10</option><option  value='233_3'>Более 50</option><option  value='233_4'>Более 100</option><option  value='233_5'>Более 200</option><option  value='233_6'>Более 500</option><option  value='233_7'>Более 1000</option><option  value='233_8'>Более 2000</option><option  value='233_9'>Более 4000</option><option  value='233_10'>Более 5000</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Частное между максимальной и минимальной ставками на шансы.' onmouseover="this.title='Частное между максимальной и минимальной ставками на шансы.'" alt='Частное между максимальной и минимальной ставками на шансы.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Рулетка без Zero без комиссии</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='134_1'>Да</option><option  value='134_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Нет зеро, нет комиссии, шансы на выигрыш 50%' onmouseover="this.title='Нет зеро, нет комиссии, шансы на выигрыш 50%'" alt='Нет зеро, нет комиссии, шансы на выигрыш 50%'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Живая рулетка</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='266_1'>Да</option><option  value='266_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Игра с живым диллером.' onmouseover="this.title='Игра с живым диллером.'" alt='Игра с живым диллером.'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Минимальная ставка на номер ($)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='135_1'>Менее $10</option><option  value='135_2'>Менее $1</option><option  value='135_3'>Менее $0.1</option><option  value='135_4'>Менее $0.01</option><option  value='135_5'>Менее $0.001</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Минимальная ставка на номер' onmouseover="this.title='Минимальная ставка на номер'" alt='Минимальная ставка на номер'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Рулетка без Zero с комиссией</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='133_1'>Да</option><option  value='133_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Берется комиссия с каждой ставки,  зеро нет' onmouseover="this.title='Берется комиссия с каждой ставки,  зеро нет'" alt='Берется комиссия с каждой ставки,  зеро нет'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Французская рулетка </label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='132_1'>Да</option><option  value='132_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Рулетка с одним зеро' onmouseover="this.title='Рулетка с одним зеро'" alt='Рулетка с одним зеро'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Европейская рулетка</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='131_1'>Да</option><option  value='131_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Рулетка с одним зеро' onmouseover="this.title='Рулетка с одним зеро'" alt='Рулетка с одним зеро'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Американская рулетка </label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='130_1'>Да</option><option  value='130_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Рулетка с двумя зеро' onmouseover="this.title='Рулетка с двумя зеро'" alt='Рулетка с двумя зеро'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Наличие Джекпота</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='129_1'>Да</option><option  value='129_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Премия за редкую комбинацию в рулетке' onmouseover="this.title='Премия за редкую комбинацию в рулетке'" alt='Премия за редкую комбинацию в рулетке'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Мультиплеерная рулетка </label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='143_1'>Да</option><option  value='143_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Рулетка где могут играть несколько человек за одним столом' onmouseover="this.title='Рулетка где могут играть несколько человек за одним столом'" alt='Рулетка где могут играть несколько человек за одним столом'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Дизайн рулетки</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='195_m2'>от 1 до 2 (ниже среднего)</option><option  value='195_b2'>от 1 до 5 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Дизайн (как тут скажешь иначе)  :)' onmouseover="this.title='Дизайн (как тут скажешь иначе)  :)'" alt='Дизайн (как тут скажешь иначе)  :)'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Реалистичность рулетки(аудио)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='196_m3'>от 1 до 3 (ниже среднего)</option><option  value='196_b3'>от 1 до 6 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Нет описания' onmouseover="this.title='Нет описания'" alt='Нет описания'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Реалистичность рулетки(видео)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='197_m3'>от 1 до 3 (ниже среднего)</option><option  value='197_b3'>от 1 до 6 (выше среднего)</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Нет описания' onmouseover="this.title='Нет описания'" alt='Нет описания'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Максимальная ставка на номер ($)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='137_1'>Более $1</option><option  value='137_2'>Более $10</option><option  value='137_3'>Более $100</option><option  value='137_4'>Более $1000</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Максимальная ставка на номер' onmouseover="this.title='Максимальная ставка на номер'" alt='Максимальная ставка на номер'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Минимальная ставка на шансы ($)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='139_1'>Менее $10</option><option  value='139_2'>Менее $1</option><option  value='139_3'>Менее $0.1</option><option  value='139_4'>Менее $0.01</option><option  value='139_5'>Менее $0.001</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Минимальная ставка на шансы' onmouseover="this.title='Минимальная ставка на шансы'" alt='Минимальная ставка на шансы'/>
+                        </td>
+                    
+                        
+                        
+                            </tr>
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Максимальная ставка на шансы ($)</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='141_1'>Более $1</option><option  value='141_2'>Более $10</option><option  value='141_3'>Более $100</option><option  value='141_4'>Более $1000</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Максимальная ставка на шансы' onmouseover="this.title='Максимальная ставка на шансы'" alt='Максимальная ставка на шансы'/>
+                        </td>
+                    
+                </table>
+            
+                <table align="center" cellpadding='0' cellspacing='0' border="0" width="100%" style='border-bottom:#C9DAE3 1px solid;'>
+                    <tr>
+                        <td colspan='5' align='left'><div class="center h5">Свойства покер-румов</div></td>
+                    </tr>
+                    
+                        
+                        
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Бесплатные турниры</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='189_1'>Да</option><option  value='189_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Турниры в которых заведение не берет комиссию за игру' onmouseover="this.title='Турниры в которых заведение не берет комиссию за игру'" alt='Турниры в которых заведение не берет комиссию за игру'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Игра в демо-режиме</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='190_1'>Да</option><option  value='190_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Нет описания' onmouseover="this.title='Нет описания'" alt='Нет описания'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Браузерная версия</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='191_1'>Да</option><option  value='191_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Можно играть из браузера' onmouseover="this.title='Можно играть из браузера'" alt='Можно играть из браузера'/>
+                        </td>
+                    
+                        
+                        <td class='params_combo2' valign='bottom'>
+                            <p class='center'><label>Скачиваемая версия</label></p><select class="parameter-value" name="param_id" ><option value='' selected='selected'>Не выбрано</option><option  value='192_1'>Да</option><option  value='192_0'>Нет</option></select>&nbsp;&nbsp;<img src='/images/info.png' title='Скачиваемая версия' onmouseover="this.title='Скачиваемая версия'" alt='Скачиваемая версия'/>
+                        </td>
+                    
+                </table>
+            
+            <div class="center"><input type="hidden" name="onFilter" value="true"></div>
+            <div class="center"><strong><a href="/parameters_info.jsp">Справка по параметрам</a></strong></div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#acc").dialog({
+            bgiframe: true,
+            autoOpen: false,
+            height: 600,
+            width: 900,
+            modal: true,
+            buttons:{ 'Отмена (Выбор параметров будет сохранен)': function() {
+                $(this).dialog('close');
+            },
+                'Выбрать': function() {
+                    document.allpf.submit();
+                }
+            }
+        });
+        $("#acc").removeClass('display');
+
+        $("input[name=allParamsDialog]").click(function() {
+            //todo: CHECK ALL SELECTED
+            $("#acc").dialog('open');
+        });
+
+    })
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    var proto = (document.location.protocol=='https:')?'https:':'http:';
+    var host = proto+'//widget.copiny.com';
+    document.write(unescape("%3Cscript src='" + host + "/static/js/widget.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript" charset="utf-8">
+    var copinyWidgetOptions = {
+        position: 'right',
+        hostcommunity:'http://casino-rating.copiny.com',
+        newwindow: '0',
+        type: 'idea',
+        color:    '#ff8400',
+        border:   '#ffffff',
+        round:    '1',
+        title:    "\u041e\u0431\u0440\u0430\u0442\u043d\u0430\u044f \u0441\u0432\u044f\u0437\u044c",
+        cache:   "9ca936d041c7637244c3fb8ef4a8ea6c\/9ca936d041c7637244c3fb8ef4a8ea6c\/ejOwVXUxULV0BZFOhqouhqoWBmC2AZhtBGa7IIm4aYMpQ7CQEUQIzDYHs50B",
+        community:3456
+    };
+    initCopinyWidget(copinyWidgetOptions);
+    CopinyWidget.showTab();
+</script>
+
+
+
+    <div id="main">
+        <div id="col1">
+            <div id="col1_content" class="clearfix">
+                <div id="main_menu">
+                    <br>
+                    <p><a href="/index.jsp">Рейтинг казино</a></p>
+                    <p><a href="/slots.htm"><strong>Игровые автоматы</strong></a></p>
+                    <p><a href="/tools.jsp">Инструменты азартного игрока</a></p>
+                    <p><a href="/news.jsp">Новости</a></p>
+                    <p><a href="/articles.jsp">Статьи о казино</a></p>
+                    <p><a href="/compare.jsp?collaps=0">Сравнить казино</a></p>
+                    <p><a href="/parameters_info.jsp">Справка по параметрам</a></p>
+                    <p><a href="http://forum.casino-rating.org">Казино форум</a></p>
+                    <p><a href="/faq.jsp">FAQ</a></p>
+                    <p><a href="/feedback.jsp">Обратная связь</a></p>
+                    <p><a href="/for_new.jsp">Владельцам интернет-казино</a></p>
+                    <p><a href="/better.jsp">Сделаем рейтинг лучше!</a></p>
+                </div>
+                
+<div class="left_menu" name="search_block">
+    <div class="h3_center">Поиск</div>
+    <div id="searchElements" class="center">
+        <br><label><strong>Домен или название казино:</strong> </label><br>
+        <input id="search1" name="search1" onkeypress="return processKeyPress(event);" type="text" /><input type="button"  onclick="selit()" value="Поиск">
+    </div>
+    <br>
+    <!-- Google Custom Search Element -->
+    <div id="cse" class="full-width">Loading...</div>
+</div>
+<div class="left_menu">
+    <div class="h3_center">Последняя новость</div>
+    
+    <br><p class='center'><strong>Заголовок</strong></p><br><p>Посещаемость ресурса достигла 180 000 в месяц. В переди 250 000 мы&nbsp; с вами :)</p>... <br><p class='align-right'><a href='/news.jsp?aid=10'>Читать далее...</a></p><br>
+</div>
+<div class="left_menu">
+    <div class="h3_center">Последняя статья</div>
+    
+    
+    
+</div>
+<div class="left_menu">
+    
+    
+    <div id='vote'>
+<div class='h3_center'>Какие типы игр в казино Вас больше привлекают?</div><br><input type='hidden' name='vote_id' value='9'>
+<p class='vote'><input type='radio' id='29' name='vote_answer'> Рулетка</p>
+<p class='vote'><input type='radio' id='37' name='vote_answer'> Мне нравится просто играть</p>
+<p class='vote'><input type='radio' id='30' name='vote_answer'> Слоты</p>
+<p class='vote'><input type='radio' id='28' name='vote_answer'> Карточные игры</p>
+<p class='vote'><input type='radio' id='31' name='vote_answer'> Кено</p>
+<br><center><input type='button' name='voteOk'  id="select_button" value='Голосовать' onclick='javascript:onVoteClick();'></center>
+</div>
+
+</div>
+<div class='left_menu'>
+    <!--LiveInternet counter-->
+    <div class="lazyload_ad"><code type="text/javascript"><!--
+        document.write("<a href='http://www.liveinternet.ru/click' "+
+                "target=_blank><img src='//counter.yadro.ru/hit?t52.6;r"+
+                escape(document.referrer)+((typeof(screen)=="undefined")?"":
+                ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+                        screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+                ";"+Math.random()+
+                "' alt='' title='LiveInternet: показано число просмотров и"+
+                " посетителей за 24 часа' "+
+                "border='0' width='88' height='31'><\/a>")
+        //--></code>
+        <!--/LiveInternet-->
+
+    </div>
+</div>
+<div class="left_menu">
+    <div class="lazyload_ad"><code type="text/javascript"><!--
+        document.write("<a href='http://top.novosel.ru/?id=34694' target='_blank'><img src='http://top.novosel.ru/top.gif?id=34694' width='88' height='31' border='0' alt='Рейтинг Сайтов НОВОСЁЛ.РУ'></a>")
+        //--></code>
+    </div>
+</div>
+<div class="left_menu">
+    <p class='center'>
+        <strong>Игровые залы :</strong>
+    </p><br>
+
+    
+    
+        <div onClick="recLink('Баннеры в левом меню', 'vulkan');"><center>
+<noindex><div class="lazyload_ad"><code type="text/javascript"><!--
+document.write('<object type="application/x-shockwave-flash" data="http://static.asocialgaming.com/banners/120_200.swf" width="120" height="200"> <param name="FlashVars" value="bannerLink=http://velcome-club.com/?r=pr10355"> <param name="quality" value="high"> <param name="wmode" value="opaque"> </object>');
+--></code></div>
+</noindex>
+<center></div><br>
+    
+        <div onClick="recLink('Баннеры в левом меню', 'банер partnerearning');"><center>
+<noindex><div class="lazyload_ad"><code type="text/javascript"><!--
+document.write('<script type="text/javascript" src="http://partnerearning.com/4/?ae0eb3eed39d2bcef4622b2499a05fe6"></script> ');
+--></code></div>
+</noindex>
+<center></div><br>
+    
+        <div onClick="recLink('Баннеры в левом меню', 'банер will');"><center>
+<noindex><div class="lazyload_ad"><code type="text/javascript"><!--
+document.write('<a href="http://serve.williamhillcasino.com/promoRedirect?member=nchnchnchnch&campaign=DEFAULT&channel=DEFAULT&zone=785517797&lp=785517769">  <img src="http://serve.williamhillcasino.com/promoLoadDisplay?member=nchnchnchnch&campaign=DEFAULT&channel=DEFAULT&zone=785517797&lp=785517769" width="120" height="240" border="0" alt="williamhillcasino.com" title="williamhillcasino.com" /> </a>');
+--></code></div>
+</noindex>
+<center></div><br>
+    
+        <div onClick="recLink('Баннеры в левом меню', 'банер will2');"><center>
+<noindex><div class="lazyload_ad"><code type="text/javascript"><!--
+document.write('<a href="http://serve.williamhill.com/promoRedirect?member=nchnchnchnch&campaign=DEFAULT&channel=DEFAULT&zone=1471292294&lp=1468682445">  <img src="http://serve.williamhill.com/promoLoadDisplay?member=nchnchnchnch&campaign=DEFAULT&channel=DEFAULT&zone=1471292294&lp=1468682445" width="120" height="240" border="0" alt="williamhill.com" title="williamhill.com" /> </a>');
+--></code></div>
+</noindex>
+<center></div><br>
+    
+        <div onClick="recLink('Баннеры в левом меню', 'crystal_slot');"><center>
+<noindex><div class="lazyload_ad"><code type="text/javascript"><!--
+document.write('<object type="application/x-shockwave-flash" data="/banners/crystal_flashb_120-240-link-10094.swf" width="120" height="240"> <param name="FlashVars" value="bannerLink=http://crystalslot.com/?ref=10094"> <param name="quality" value="high"> <param name="wmode" value="opaque"> </object>');
+--></code></div>
+</noindex>
+<center></div><br>
+    
+        <div onClick="recLink('Баннеры в левом меню', '888casino');"><center>
+<noindex><div class="lazyload_ad"><code type="text/javascript"><!--
+document.write('<a href="http://ru.888.com/blackjack/?sr=158355&flag=0000"><IMG SRC="http://marketing.888.com//888casino/RU/Banners/120x240_888casino_blackjack_RU.gif" ALT="blackjack dollar 120x240" BORDER="0"></a>');
+--></code></div>
+</noindex>
+<center></div><br>
+    
+</div>
+
+            </div>
+        </div>
+
+
+        <div id="col3">
+            <div id="col3_content" >
+                
+
+<table width='100%' border='0' class='full-width' cellpadding='0' cellspacing='0'><tr><td class='art_blank_rating'>&nbsp;</td><td class='art_blank_rating'>&nbsp;</td><td class='art_right_top'>&nbsp;</td></tr><tr><td class='art_blank_rating'>&nbsp;</td><td class='art_center_center_main_rating'>
+<center>
+    <table border='0' width='100%'><tr><td width="250px">Всего казино по запросу:<strong> 52</strong><br>Максимальная возможная оценка: <strong>439.6</strong></td><td align='center'><span class='shadow-link'>1</span> <a href='?page=2' class='shadow-link'>2</a> <a href='?page=3' class='shadow-link'>3</a> </td><td align='center' width="150px"><form method='get' >Сайтов на странице: <select class='showBy' name='arrsize'><option>5</option><option>10</option><option selected='selected'>20</option><option>50</option></select><input type='submit' value='>>'></form></td></tr></table><br>
+    <table class="rating_table" border="0" cellspacing="0">
+        <thead>
+        <tr>
+            <td width="250px"><strong>Логотип</strong></td>
+            <td><strong>Название/Описание</strong></td>
+            <td width="100px"><strong>Рейтинг</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td  align="center"></td>
+            <td align="center"></td>
+            <td align="center"><br><center><input id="select_button" type="button" value="Сравнить" onclick="javascript: location.href = '/compare.jsp';"></center></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=27'><img  height='190px' width='250px' alt='Скриншот казино Evrogrand' src='/upload_dir/u0_i49_evrogrand.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=27'><strong>Evrogrand</strong><br><noindex><p>Казино «Еврогранд» – один из проектов английской компании WHG. К данной компании относятся также такие знаменитые он-лайн казино, как 21 Nova, Joylandcasino. От других проектов данной сети «Еврогранд» выгодно отличает более интересный, стильный дизайн и более интересные бонусные предложения.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=27' onClick="recLinkExt('Evrogrand');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://eurogrand.com</strong></a> | <a href='/casino_info.jsp?cid=27'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=27'>334.37</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=10'><img  height='190px' width='250px' alt='Скриншот казино 888casino' src='/upload_dir/u0_i189_888.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=10'><strong>888casino</strong><br><noindex><p>888.com - одно из самых старых казино в сети. Домен казино был зарегистрирован в далеком 1995 году, что уже говорит о многом. 888.com является спонсором многих спортивных мероприятий и организаций. В период с 2006 по 2007 казино «888» было титутльным спонсором футбольного клуба «Мидлсбро» английской премьер-лиги. До недавнего времени данное казино было недоступно для российских игроков, так как интерфейс был полностью на английском, и казино не работало с webmoney и другими платёжными системами, которые распространены в России, однако, сейчас, казино обратило взоры в нашу сторону, поэтому российским игрокам здесь стали рады.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=10' onClick="recLinkExt('888casino');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://888casino.com/</strong></a> | <a href='/casino_info.jsp?cid=10'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=10'>318.85</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=166'><img  height='190px' width='250px' alt='Скриншот казино AzartPlay' src='/upload_dir/u0_i190_azartplay.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=166'><strong>AzartPlay</strong><br><noindex><p>Интернет казино AzartPlay еще совсем молодое, но уже подает большие надежды. Ведь его разработка принадлежит компании GGS Net Ltd. Это один из крупнейших производителей программного обеспечения для игорной индустрии. Как я заметил, графика в играх действительно четкая, нет никаких «подвисаний». </p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=166' onClick="recLinkExt('AzartPlay');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://azartplay.com</strong></a> | <a href='/casino_info.jsp?cid=166'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=166'>267.7</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=198'><img  height='190px' width='250px' alt='Скриншот казино Crystal slot' src='/upload_dir/u0_i59_cristalslot.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=198'><strong>Crystal slot</strong><br><noindex><p>Казино Crystal Slot относительно новый проект, но уже находится на рынке достаточное количество времени, чтобы можно было судить о его честности и открытости. Казино контролирует честность игры (при помощи системы контроля честности MD5), и судя по всему система отлично работает – в сети жалоб нет. К тому же совсем недавно программисты проекта еще улучшили систему, повысив надёжность в разы.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=198' onClick="recLinkExt('Crystal slot');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://crystalslot.com</strong></a> | <a href='/casino_info.jsp?cid=198'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=198'>249.1</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=138'><img  height='190px' width='250px' alt='Скриншот казино William Hill' src='/upload_dir/u0_i203_william hill.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=138'><strong>William Hill</strong><br><noindex><p>William Hill - это не просто красивое имя. Это очень известный бренд в Англии и Ирландии. Данная организация существует с 1934 года и изначально специализировалась на приёме ставок. В 21 веке она стала развивать свою игорную деятельность и вышла в Интернет со своими новыми продуктами - покер и казино.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=138' onClick="recLinkExt('William Hill');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://williamhillcasino.com</strong></a> | <a href='/casino_info.jsp?cid=138'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=138'>243.77</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=179'><img  height='190px' width='250px' alt='Скриншот казино Crazy Vegas' src='/upload_dir/u0_i38_crazy.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=179'><strong>Crazy Vegas</strong><br><noindex><p>Если покопаться в Интернете, то можно обнаружить достаточно обширное количество хороших отзывов о данном казино. Я решил выяснить на собственном опыте, чем же так привлекателен данный проект. И вот что у меня получилось.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=179' onClick="recLinkExt('Crazy Vegas');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://crazyvegascasino.co.uk</strong></a> | <a href='/casino_info.jsp?cid=179'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=179'>234.32</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=140'><img  height='190px' width='250px' alt='Скриншот казино Казино Елена' src='/upload_dir/u0_i209_elencasino.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=140'><strong>Казино Елена</strong><br><noindex><p>Казино «Елена» - относительно молодой проект, который начал свою деятельность в середине 2008 года. При первом знакомстве с данным ресурсом создается мнение, что это очередной дешевый проект-однодневка. Хотя внешность бывает обманчива. Чем больше знакомишься с казино, тем больше к нему проникаешься симпатией, ведь администрация, насколько это возможно, постаралась создать максимально комфортные условия для игрока.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=140' onClick="recLinkExt('Казино Елена');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://elencasino.com</strong></a> | <a href='/casino_info.jsp?cid=140'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=140'>227.2</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=19'><img  height='190px' width='250px' alt='Скриншот казино Гранд-Казино' src='/upload_dir/u0_i208_grand-casino.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=19'><strong>Гранд-Казино</strong><br><noindex><p>В казино Grand Casino можно играть как на реальные деньги, так и на fun-деньги. Игра на fun-деньги дает возможность познакомиться с играми и интернет-казино в целом. При совершении депозитов игрокам начисляются различные бонусы. В Grand Casino минимальная ставка составляет всего 1 цент! Оригинальный дизайн, любимые игры - все это для вас. Играйте&nbsp;и выигрывайте!</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=19' onClick="recLinkExt('Гранд-Казино');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://grand-casino.com</strong></a> | <a href='/casino_info.jsp?cid=19'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=19'>217.53</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=42'><img  height='190px' width='250px' alt='Скриншот казино Ва-Банк' src='/upload_dir/u0_i205_va-bank.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=42'><strong>Ва-Банк</strong><br><noindex><p>Казино «Ва-банк» – старейший азартно-развлекательный ресурс рунета. Последнее время о нём писалось много негатива, и большинство из написанного было, к сожалению, правдой, ведь не бывает дыма без огня. Однако после смены владельца Va-Bank взял курс на восстановление своей репутации в глазах игроков и улучшение игрового процесса – ведь только так можно конкурировать с другими ресурсами.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=42' onClick="recLinkExt('Ва-Банк');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://va-bank.com</strong></a> | <a href='/casino_info.jsp?cid=42'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=42'>207.15</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=101'><img  height='190px' width='250px' alt='Скриншот казино Betfair' src='/upload_dir/u0_i223_betfair.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=101'><strong>Betfair</strong><br><noindex><p>На одном из рекламных банеров данного ресурса я обнаружил слоган « Betfair - таким должно быть настоящее казино». После того, как я опробовал это казино, я готов подписаться под данными словами. И это отнюдь не от того, что я просто хочу сделать ничем не подкрепленный хвалебный дифирамб. Это казино действительно стоит того, чтобы в его адрес делали комплименты.  Данный игровой портал один из самых лучших, что я когда-либо видел, а видел я немало. Сразу видно, казино создано профессионалами.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=101' onClick="recLinkExt('Betfair');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://betfair.com</strong></a> | <a href='/casino_info.jsp?cid=101'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=101'>202.07</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=150'><img  height='190px' width='250px' alt='Скриншот казино Casino Tropez' src='/upload_dir/u0_i42_tropez.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=150'><strong>Casino Tropez</strong><br><noindex><p>Casino Tropez является самым старым проектом, принадлежащим компании Fastengine Limited Кипр. В сети оно существует около 8 лет. За это время данный проект завоевал признание многих игроков благодаря своему отличному сервису, богатому выбору игр и огромным денежным призам. По качеству предлагаемых услуг это казино реально может соперничать с лучшими игровыми ресурсами сети.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=150' onClick="recLinkExt('Casino Tropez');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://casinotropez.com</strong></a> | <a href='/casino_info.jsp?cid=150'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=150'>197.53</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=106'><img  height='190px' width='250px' alt='Скриншот казино Unibet' src='/upload_dir/u0_i224_unibet.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=106'><strong>Unibet</strong><br><noindex><p>На бескрайних просторах Интернета легко обнаружить огромное количество разнообразных азартно-развлекательных ресурсов. Однако не везде можно быть уверенным в том, что вас банально не обманут. Под яркой вывеской, сулящей «легкие» деньги, могут скрываться мошенники. К сожалению, таких мест в Интернете много, однако есть в этом бизнесе и надежные фирмы. Фирмы, которым можно доверять. К одной из них относится Unibet.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=106' onClick="recLinkExt('Unibet');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://unibet.com</strong></a> | <a href='/casino_info.jsp?cid=106'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=106'>195.5</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=58'><img  height='190px' width='250px' alt='Скриншот казино Европа' src='/upload_dir/u0_i62_evropa.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=58'><strong>Европа</strong><br><noindex><p>Казино «Европа» достойно своего названия: выглядит оно по-европейски, отношение к клиентам тоже на высоком уровне, да и игры не уступают. Если учесть, что программное обеспечение от компании с мировым именем, да и имеющуюся лицензию не забыть, то это казино можно поставить на голову выше большинства казино в сети Интернет. Теперь подробнее о «плюсах» и «минусах» (а они тоже есть).</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=58' onClick="recLinkExt('Европа');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://www.europacasino.com</strong></a> | <a href='/casino_info.jsp?cid=58'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=58'>194.6</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=128'><img  height='190px' width='250px' alt='Скриншот казино Casino.com' src='/upload_dir/u0_i194_casino com.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=128'><strong>Casino.com</strong><br><noindex><p>Casino.com. Рекламный слоган данного ресурса - the only place to play, данную фразу можно перевести как «Ищите онлайн-казино? Конечно Casino.com». Данный ресурс поддерживает высокие стандарты обслуживания своих клиентов, об этом они заявляют на каждой странице сайта. И это действительно так, здесь вас ожидают более 150 игр, полностью русифицированный контент, большое количество платежных систем для депозита и снятия средств, онлайн-поддержка.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=128' onClick="recLinkExt('Casino.com');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://casino.com</strong></a> | <a href='/casino_info.jsp?cid=128'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=128'>190.8</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=178'><img  height='190px' width='250px' alt='Скриншот казино You Spades' src='/upload_dir/u0_i204_youspades.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=178'><strong>You Spades</strong><br><noindex><p>You Spades - молодой проект, на данный момент ему нет и трех лет. Однако выглядит он очень достойно, даже на фоне более именитых и опытных конкурентов. Удобный софт, отличные игры, внимательная поддержка - все это ожидает вас в данном казино.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=178' onClick="recLinkExt('You Spades');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://youspades.com</strong></a> | <a href='/casino_info.jsp?cid=178'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=178'>189.93</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=108'><img  height='190px' width='250px' alt='Скриншот казино 32 Red Casino' src='/upload_dir/u0_i225_32red.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=108'><strong>32 Red Casino</strong><br><noindex><p>1</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=108' onClick="recLinkExt('32 Red Casino');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://32Red.com</strong></a> | <a href='/casino_info.jsp?cid=108'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=108'>185.4</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=145'><img  height='190px' width='250px' alt='Скриншот казино Victor Chandler Casino' src='/upload_dir/u0_i202_victorchandler.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=145'><strong>Victor Chandler Casino</strong><br><noindex><p>Как ни трудно догадаться, буквы "VC" в названии данного ресурса означают инициалы его владельца - Victor Chandler. Чем знаменит данный человек? Это один из самых известных в мире букмекеров, богатейший человек Великобритании. Семья Chandler уже более 60-ти лет занимается бизнесом в сфере азартных игр. Наряду с приёмом ставок, компания Виктора Чандлера-младшего предлагает целый спектр разнообразных азартных развлечений, в ряду которых казино занимает достаточно важную роль.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=145' onClick="recLinkExt('Victor Chandler Casino');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://vccasino.com</strong></a> | <a href='/casino_info.jsp?cid=145'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=145'>184.97</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=142'><img  height='190px' width='250px' alt='Скриншот казино Casino Oreanda' src='/upload_dir/u0_i33_oreanda.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=142'><strong>Casino Oreanda</strong><br><noindex><p>Казино «Ореанда» - молодой, но перспективный проект, ориентированный на игроков из России, Украины и других стран ближнего зарубежья. Главное достоинство данного казино - реально работающая система контроля честности MD5. Что касается игр, то на этом ресурсе вы сможете найти тридцать две различные азартные игры, на любой вкус. В основном это слоты, хотя есть здесь и рулетка, и блэкджек, и покер.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=142' onClick="recLinkExt('Casino Oreanda');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://casinooreanda.com</strong></a> | <a href='/casino_info.jsp?cid=142'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=142'>184.07</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=105'><img  height='190px' width='250px' alt='Скриншот казино 21Нова' src='/upload_dir/u0_i22_21nova.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=105'><strong>21Нова</strong><br><noindex><p>Казино 21 Нова - еще один представитель казино, программное обеспечение у которого от компании Playtech. Сбор информации про казино прошел легко и быстро - меню легкодоступное, да и карта сайта есть. При входе на сайт предлагают скачать программу с играми, на сайте же только описание этих игр, только вот то, что на сайте отличается от  того, что в скачиваемой версии. Это что касается игр, но есть и другие критерии, которые есть в описании далее.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=105' onClick="recLinkExt('21Нова');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://21nova.com</strong></a> | <a href='/casino_info.jsp?cid=105'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=105'>183.8</a></td>
+        </tr>
+        
+        <tr>
+            <td class='no-border' valign='top' align='center'>
+                <a href='/casino_info.jsp?cid=137'><img  height='190px' width='250px' alt='Скриншот казино Bellini' src='/upload_dir/u0_i191_bellini.jpg'/></a></td>
+            <td class='no-border' valign='top'>
+                <a href='/casino_info.jsp?cid=137'><strong>Bellini</strong><br><noindex><p>Казино Bellini считается достаточно дорогим и серьезным проектом, ориентирован на посетителей со всего мира, контент переведен на 9 языков, включая русский. Кстати, для России есть даже бесплатный телефонный номер поддержки, что нечасто увидишь в других подобных казино.</p></noindex></a>
+                <br><center name='nocopydiv'>
+                <a class='casino' href='/external.jsp?rc=137' onClick="recLinkExt('Bellini');extCl(this.href);window.open(this.href);return false;">
+                    <strong>http://casinobellini.com</strong></a> | <a href='/casino_info.jsp?cid=137'><strong>Обзор</strong></a>
+            </center></td>
+            <td class='no-border padding' valign="middle" align="center" ><a class='rating' href='/casino_info.jsp?cid=137'>182.13</a></td>
+        </tr>
+        
+        <tr>
+            <td class="no-border" align="center"></td>
+            <td class="no-border" align="center"></td>
+            <td class="no-border" align="center"><br><input id="select_button" type="button" value="Сравнить" onclick="javascript: location.href = '/compare.jsp?collaps=0&param_id=&param_id=&param_id=&onFilter=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C';"></td>
+        </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function extCl(link){
+            $.ajax({
+                url: "/jq_methods.jsp",
+                data: "os="+$.client.os+"&browser="+$.client.browser+"&link="+link+"&click_external=true",
+                async: true
+            });
+        }
+    </script>
+    <table border='0' width='90%'><tr><td width="250px">Всего казино в базе:<strong> 52</strong></td><td align='center'><span class='shadow-link'>1</span> <a href='?page=2' class='shadow-link'>2</a> <a href='?page=3' class='shadow-link'>3</a> </td><td align='center' width="150px"><form method='get'>Сайтов на странице: <select class='showBy' name='arrsize'><option>5</option><option>10</option><option selected='selected'>20</option><option>50</option></select><input type='submit' value='>>'></form></td></tr></table><br>
+</center>
+</td><td class='art_right_center'>&nbsp;</td></tr><tr><td class='art_left_bottom'>&nbsp;</td><td class='art_center_bottom'> &nbsp;</td><td class='art_right_bottom'>&nbsp;</td></tr></table>
+
+            </div>
+        </div>
+        <div id="ie_clearing">   </div>
+    </div>
+</div>
+<div id="footer">
+    <center>
+        RatingCasino - это полное и обновляемое обозрение виртуальных интернет-казино. Будьте уверены, что в следующий раз, когда Вы посетите нас,<br>
+        Вы найдете только свежую информацию и самые последние новости в мире интернет-казино.<br>
+        Наша цель - самые объективные обзоры, самые большие бонусы!<br>
+        <img src="/images/logo_bottom.png" height="20"><br>
+        (с) 2009 CasinoRating - All Rights Reserved
+    </center>
+</div>
+
+
+<!-- Div for extra code-->
+<div id="extraDiv"></div>
+
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" class="hidden"></div>
+<script type='text/javascript' src="http://s.clicktale.net/WRc3.js"></script>
+<script type="text/javascript">
+    var ClickTaleSSL=1;
+    if(typeof ClickTale=='function') ClickTale(46987,0.15,"www");
+</script>
+<!-- ClickTale end of Bottom part -->
+
+<!-- Yandex.Metrika counter -->
+<div class="hidden"><script type="text/javascript">
+    (function(w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter6814150 = new Ya.Metrika({id:6814150,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+            }
+            catch(e) { }
+        });
+    })(window, 'yandex_metrika_callbacks');
+</script></div>
+<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<noscript><div><img src="//mc.yandex.ru/watch/6814150" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- 179762ff2d9f3563dcbf5c8978575092mochiads.com -->
+</body>
+</html>                    

@@ -143,7 +143,7 @@ class CasinoScreenshot(models.Model):
     """
     Screenshots for casino
     """
-    TYPES = ((1, _(u"Игры"),), (1, _(u"Сайт"),), )
+    TYPES = ((1, _(u"Игры"),), (2, _(u"Личный кабинет"),), (3, _(u"Сайт"),), (4, _(u"Прочее"),), )
     UPLOAD_DIR = "casino"
     casino = models.ForeignKey(Casino)
     name = models.CharField(_(u"Название"), max_length=200)
@@ -161,15 +161,60 @@ class CasinoScreenshot(models.Model):
         verbose_name_plural = _(u"Скриншоты казино")
 
 
+class CasinoArticle(models.Model):
+    """
+    Model of casino articles. Show on casino page.
+    """
+    TYPES = ((1, _(u""),), (2, _(u""),), (3, _(u"Акции"),), (4, _(u"Новости"),), )
+    casino = models.ForeignKey(Casino)
+    owner_id = models.SmallIntegerField(_(u"Автор"), default=0)
+    type = models.SmallIntegerField(_(u"Тип статьи"), choices=TYPES)
+    title = models.CharField(_(u"Заголовок"), max_length=255)
+    text = models.TextField(_(u"Текст"))
+    date = models.DateTimeField(_(u"Дата публикации"))
+
+    def __unicode__(self):
+        """
+        Object string representation
+        """
+        return self.title
+
+    class Meta:
+        ordering = ["date"]
+        verbose_name = _(u"Статья о казино")
+        verbose_name_plural = _(u"Статьи о казино")
+
+
 class ParameterToCasino(models.Model):
     """
     Parameters to casino through model
     """
+    # manager = models.ForeignKey(User, verbose_name=_(u"Менеджер"), null=True)
+    manager_id = models.IntegerField(_(u"Менеджер"))
     parameter = models.ForeignKey(Parameter, verbose_name=_(u"Параметр"))
     casino = models.ForeignKey(Casino, verbose_name=_(u"Казино"))
-    select = models.SmallIntegerField(_(u"Выбор из списка"))
-    boolean = models.SmallIntegerField(_(u"да/нет"), choices=PARAM_VALUES, default=-1)
-    string = models.CharField(_(u"Другое значение"), max_length=255, blank=True)
+    # value = models.CharField(_(u"Значение"), max_length=1000)
+    value = models.TextField(_(u"Значение"))
+    comment = models.TextField(_(u"Комментарий"))
+    author = models.IntegerField(_(u"Автор"))
+    # select = models.SmallIntegerField(_(u"Выбор из списка"))
+    # boolean = models.SmallIntegerField(_(u"да/нет"), choices=PARAM_VALUES, default=-1)
+    # string = models.CharField(_(u"Другое значение"), max_length=255, blank=True)
+
+    def a__init__(self, *args, **kwargs):
+        """
+        Init fields types
+        """
+        self._meta.fields[3]._choices = PARAM_VALUES
+        # self._meta.fields[3] = models.CharField(_(u"Значение"), max_length=255)
+        a = self._meta.fields
+        aa = self._meta.fields[3].choices
+        # assert 0
+        # if self.parameter_id:
+            # print self.parameter.description
+        super(ParameterToCasino, self).__init__(*args, **kwargs)
+        # print self.parameter.description
+
 
     class Meta:
         unique_together = ("parameter", "casino", )

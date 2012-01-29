@@ -13,15 +13,17 @@ PER_PAGE_LIST = (5, 10, 20, 50)
 DEFAULT_PER_PAGE = 20
 
 
-def index(request, var=None):
+def index(request, nonslash=None):
     """
     Show list of casino
     """
-    if var:
+    if nonslash:
         return HttpResponseRedirect("/")
 
     data = {}
     casino_list = Casino.objects.filter(enabled=True, accept=True).order_by("-rating", "id")
+    if len(casino_list):
+        data["max_rating"] = casino_list[0].rating
 
     try:
         page = int(request.GET.get('page'))
@@ -64,4 +66,4 @@ def casino(request):
         raise Http404
     data = {}
     data["casino"] = get_object_or_404(Casino, pk=item_id)
-    return direct_to_template(request, "casino/casino/entry.html", data)
+    return direct_to_template(request, "old_site/casino.html", data)

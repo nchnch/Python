@@ -7,6 +7,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 class ParameterToCasinoInline(admin.TabularInline):
     model = ParameterToCasino
+    fields = ("value",)
     extra = 0
 
 
@@ -27,7 +28,7 @@ class CasinoAdmin(admin.ModelAdmin):
         (_(u"Сортировка"), {"fields" : ("order_hand", "order_hand_date", )}),
     )
     '''
-    inlines = (CasinoScreenshotInline, ParameterToCasinoInline, )
+    inlines = (CasinoScreenshotInline,) # ParameterToCasinoInline, )
     list_display = ("name", "domain", "accept", "otstoy")
     # list_display_links = ("name",)
     list_filter = ("country", "otstoy", "accept", )
